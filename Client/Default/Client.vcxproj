@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{413898de-f55b-456e-8d87-b3285f1b8d44}</ProjectGuid>
+    <RootNamespace>Client</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>../Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>../Bin\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../../EngineSDK/Inc\;../../EngineSDK/Lib\;../Private\;../Public\;../Default\;../Public\imgui;../../EngineSDK/hlsl\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);d3d11.lib;Engine.lib;imgui.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../EngineSDK/Lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+    </FxCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <AdditionalIncludeDirectories>../../EngineSDK\hlsl\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../../EngineSDK/Inc\;../../EngineSDK/Lib\;../Private\;../Public\;../Default\;../../EngineSDK/hlsl\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);d3d11.lib;Engine.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../EngineSDK/Lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+    </FxCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <AdditionalIncludeDirectories>../../EngineSDK/hlsl\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Public\Arrow.h" />
+    <ClInclude Include="..\Public\BackGround.h" />
+    <ClInclude Include="..\Public\Boss.h" />
+    <ClInclude Include="..\Public\BossBody.h" />
+    <ClInclude Include="..\Public\BossEye.h" />
+    <ClInclude Include="..\Public\BossEyeTrail.h" />
+    <ClInclude Include="..\Public\BossRock.h" />
+    <ClInclude Include="..\Public\BossStage.h" />
+    <ClInclude Include="..\Public\BossWeapon.h" />
+    <ClInclude Include="..\Public\Bullet.h" />
+    <ClInclude Include="..\Public\BulletHit.h" />
+    <ClInclude Include="..\Public\Camera_Free.h" />
+    <ClInclude Include="..\Public\ChaseTrail.h" />
+    <ClInclude Include="..\Public\Client_Defines.h" />
+    <ClInclude Include="..\Public\DebugCamera.h" />
+    <ClInclude Include="..\Public\DoorEffect.h" />
+    <ClInclude Include="..\Public\Effect.h" />
+    <ClInclude Include="..\Public\EffectBossRockAlert.h" />
+    <ClInclude Include="..\Public\EffectBossRockAlertFinal.h" />
+    <ClInclude Include="..\Public\EffectBullet.h" />
+    <ClInclude Include="..\Public\EffectBulletTrail.h" />
+    <ClInclude Include="..\Public\EffectCircle1004.h" />
+    <ClInclude Include="..\Public\EffectFollowLighting.h" />
+    <ClInclude Include="..\Public\EffectHit1004.h" />
+    <ClInclude Include="..\Public\EffectManager.h" />
+    <ClInclude Include="..\Public\EffectMuzzle.h" />
+    <ClInclude Include="..\Public\EffectProjectileMonsterHit.h" />
+    <ClInclude Include="..\Public\EffectProjectileWallHit.h" />
+    <ClInclude Include="..\Public\EffectProjectileWallHitFront.h" />
+    <ClInclude Include="..\Public\EffectProjectileWallHitSpot.h" />
+    <ClInclude Include="..\Public\EffectRoarNoise.h" />
+    <ClInclude Include="..\Public\EffectSphere1004.h" />
+    <ClInclude Include="..\Public\EffectTrail.h" />
+    <ClInclude Include="..\Public\imgui\imconfig.h" />
+    <ClInclude Include="..\Public\imgui\imgui.h" />
+    <ClInclude Include="..\Public\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="..\Public\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="..\Public\imgui\imgui_internal.h" />
+    <ClInclude Include="..\Public\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\Public\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\Public\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\Public\InterMove.h" />
+    <ClInclude Include="..\Public\InterMoveEndPos.h" />
+    <ClInclude Include="..\Public\InterTrigger.h" />
+    <ClInclude Include="..\Public\LevelBoss.h" />
+    <ClInclude Include="..\Public\Level_GamePlay.h" />
+    <ClInclude Include="..\Public\Level_Loading.h" />
+    <ClInclude Include="..\Public\Level_Logo.h" />
+    <ClInclude Include="..\Public\Loader.h" />
+    <ClInclude Include="..\Public\LoadingBar.h" />
+    <ClInclude Include="..\Public\LoadingColor.h" />
+    <ClInclude Include="..\Public\MainApp.h" />
+    <ClInclude Include="..\Public\Meteor.h" />
+    <ClInclude Include="..\Public\Monster01.h" />
+    <ClInclude Include="..\Public\Monster02.h" />
+    <ClInclude Include="..\Public\Monster03.h" />
+    <ClInclude Include="..\Public\Monster03Fire.h" />
+    <ClInclude Include="..\Public\Monster04.h" />
+    <ClInclude Include="..\Public\Monster04Fire.h" />
+    <ClInclude Include="..\Public\Monster05.h" />
+    <ClInclude Include="..\Public\Monster06.h" />
+    <ClInclude Include="..\Public\MonsterBase.h" />
+    <ClInclude Include="..\Public\MonsterBody01.h" />
+    <ClInclude Include="..\Public\MonsterBody02.h" />
+    <ClInclude Include="..\Public\MonsterBody03.h" />
+    <ClInclude Include="..\Public\MonsterBody04.h" />
+    <ClInclude Include="..\Public\MonsterBody05.h" />
+    <ClInclude Include="..\Public\MonsterBody06.h" />
+    <ClInclude Include="..\Public\MonsterBodyBase.h" />
+    <ClInclude Include="..\Public\MonsterBullet.h" />
+    <ClInclude Include="..\Public\MonsterManager.h" />
+    <ClInclude Include="..\Public\MonsterWeapon01.h" />
+    <ClInclude Include="..\Public\MonsterWeapon02.h" />
+    <ClInclude Include="..\Public\MonsterWeapon03.h" />
+    <ClInclude Include="..\Public\MonsterWeapon04.h" />
+    <ClInclude Include="..\Public\MonsterWeapon05.h" />
+    <ClInclude Include="..\Public\MonsterWeapon06.h" />
+    <ClInclude Include="..\Public\MonsterWeaponBase.h" />
+    <ClInclude Include="..\Public\Particle.h" />
+    <ClInclude Include="..\Public\ParticleBossRock.h" />
+    <ClInclude Include="..\Public\ParticleBossRockCol.h" />
+    <ClInclude Include="..\Public\ParticleBossRockColDust.h" />
+    <ClInclude Include="..\Public\ParticleBossRockColDustLighting.h" />
+    <ClInclude Include="..\Public\ParticleBossRockDust.h" />
+    <ClInclude Include="..\Public\ParticleBossSmash.h" />
+    <ClInclude Include="..\Public\ParticleBossSmashDust.h" />
+    <ClInclude Include="..\Public\ParticleBossWalk.h" />
+    <ClInclude Include="..\Public\ParticleManager.h" />
+    <ClInclude Include="..\Public\ParticleMonsterChase.h" />
+    <ClInclude Include="..\Public\ParticleMonsterDead.h" />
+    <ClInclude Include="..\Public\ParticleMonsterHit.h" />
+    <ClInclude Include="..\Public\ParticleMonsterSpawn.h" />
+    <ClInclude Include="..\Public\ParticlePlayerGunFire.h" />
+    <ClInclude Include="..\Public\ParticleProjectileHit.h" />
+    <ClInclude Include="..\Public\ParticleWall.h" />
+    <ClInclude Include="..\Public\ParticleFollowLightingDust.h" />
+    <ClInclude Include="..\Public\PiercingSwingTrail.h" />
+    <ClInclude Include="..\Public\PiercingTrail.h" />
+    <ClInclude Include="..\Public\Player.h" />
+    <ClInclude Include="..\Public\PlayerBody.h" />
+    <ClInclude Include="..\Public\PlayerBullet.h" />
+    <ClInclude Include="..\Public\PlayerWeapon.h" />
+    <ClInclude Include="..\Public\Projectile.h" />
+    <ClInclude Include="..\Public\ProjectileTrail.h" />
+    <ClInclude Include="..\Public\SkyBox.h" />
+    <ClInclude Include="..\Public\Spawner.h" />
+    <ClInclude Include="..\Public\SpawnTrigger.h" />
+    <ClInclude Include="..\Public\Stage01.h" />
+    <ClInclude Include="..\Public\StateObjectBody.h" />
+    <ClInclude Include="..\Public\StateObjectContainer.h" />
+    <ClInclude Include="..\Public\StateObjectWeapon.h" />
+    <ClInclude Include="..\Public\SwordTrail.h" />
+    <ClInclude Include="..\Public\Terrain.h" />
+    <ClInclude Include="..\Public\TestEffect.h" />
+    <ClInclude Include="..\Public\TestPanel.h" />
+    <ClInclude Include="..\Public\TestPlayer.h" />
+    <ClInclude Include="..\Public\TestPlayerBody.h" />
+    <ClInclude Include="..\Public\TestPlayerWeapon.h" />
+    <ClInclude Include="..\Public\TestTrail.h" />
+    <ClInclude Include="..\Public\Torch.h" />
+    <ClInclude Include="..\Public\TorchFire.h" />
+    <ClInclude Include="..\Public\Trigger.h" />
+    <ClInclude Include="..\Public\UIBG.h" />
+    <ClInclude Include="..\Public\UICrossHair.h" />
+    <ClInclude Include="..\Public\UIDamageFont.h" />
+    <ClInclude Include="..\Public\UIFont.h" />
+    <ClInclude Include="..\Public\UIHPBar.h" />
+    <ClInclude Include="..\Public\UIHPVertical.h" />
+    <ClInclude Include="..\Public\UIPlayerHPBarBG.h" />
+    <ClInclude Include="..\Public\UIPlayerInfoBG.h" />
+    <ClInclude Include="..\Public\UIPlayerTex.h" />
+    <ClInclude Include="..\Public\UITex.h" />
+    <ClInclude Include="..\Public\UITexPerspective.h" />
+    <ClInclude Include="..\Public\UITrigger.h" />
+    <ClInclude Include="..\Public\WallAABB.h" />
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Private\Arrow.cpp" />
+    <ClCompile Include="..\Private\BackGround.cpp" />
+    <ClCompile Include="..\Private\Boss.cpp" />
+    <ClCompile Include="..\Private\BossBody.cpp" />
+    <ClCompile Include="..\Private\BossEye.cpp" />
+    <ClCompile Include="..\Private\BossEyeTrail.cpp" />
+    <ClCompile Include="..\Private\BossRock.cpp" />
+    <ClCompile Include="..\Private\BossStage.cpp" />
+    <ClCompile Include="..\Private\BossWeapon.cpp" />
+    <ClCompile Include="..\Private\Bullet.cpp" />
+    <ClCompile Include="..\Private\BulletHit.cpp" />
+    <ClCompile Include="..\Private\Camera_Free.cpp" />
+    <ClCompile Include="..\Private\ChaseTrail.cpp" />
+    <ClCompile Include="..\Private\DebugCamera.cpp" />
+    <ClCompile Include="..\Private\DoorEffect.cpp" />
+    <ClCompile Include="..\Private\Effect.cpp" />
+    <ClCompile Include="..\Private\EffectBossRockAlert.cpp" />
+    <ClCompile Include="..\Private\EffectBossRockAlertFinal.cpp" />
+    <ClCompile Include="..\Private\EffectBullet.cpp" />
+    <ClCompile Include="..\Private\EffectBulletTrail.cpp" />
+    <ClCompile Include="..\Private\EffectCircle1004.cpp" />
+    <ClCompile Include="..\Private\EffectFollowLighting.cpp" />
+    <ClCompile Include="..\Private\EffectHit1004.cpp" />
+    <ClCompile Include="..\Private\EffectManager.cpp" />
+    <ClCompile Include="..\Private\EffectMuzzle.cpp" />
+    <ClCompile Include="..\Private\EffectProjectileMonsterHit.cpp" />
+    <ClCompile Include="..\Private\EffectProjectileWallHit.cpp" />
+    <ClCompile Include="..\Private\EffectProjectileWallHitFront.cpp" />
+    <ClCompile Include="..\Private\EffectProjectileWallHitSpot.cpp" />
+    <ClCompile Include="..\Private\EffectRoarNoise.cpp" />
+    <ClCompile Include="..\Private\EffectSphere1004.cpp" />
+    <ClCompile Include="..\Private\EffectTrail.cpp" />
+    <ClCompile Include="..\Private\InterMove.cpp" />
+    <ClCompile Include="..\Private\InterMoveEndPos.cpp" />
+    <ClCompile Include="..\Private\InterTrigger.cpp" />
+    <ClCompile Include="..\Private\LevelBoss.cpp" />
+    <ClCompile Include="..\Private\Level_GamePlay.cpp" />
+    <ClCompile Include="..\Private\Level_Loading.cpp" />
+    <ClCompile Include="..\Private\Level_Logo.cpp" />
+    <ClCompile Include="..\Private\Loader.cpp" />
+    <ClCompile Include="..\Private\LoadingBar.cpp" />
+    <ClCompile Include="..\Private\LoadingColor.cpp" />
+    <ClCompile Include="..\Private\MainApp.cpp" />
+    <ClCompile Include="..\Private\Meteor.cpp" />
+    <ClCompile Include="..\Private\Monster01.cpp" />
+    <ClCompile Include="..\Private\Monster02.cpp" />
+    <ClCompile Include="..\Private\Monster03.cpp" />
+    <ClCompile Include="..\Private\Monster03Fire.cpp" />
+    <ClCompile Include="..\Private\Monster04.cpp" />
+    <ClCompile Include="..\Private\Monster04Fire.cpp" />
+    <ClCompile Include="..\Private\Monster05.cpp" />
+    <ClCompile Include="..\Private\Monster06.cpp" />
+    <ClCompile Include="..\Private\MonsterBase.cpp" />
+    <ClCompile Include="..\Private\MonsterBody01.cpp" />
+    <ClCompile Include="..\Private\MonsterBody02.cpp" />
+    <ClCompile Include="..\Private\MonsterBody03.cpp" />
+    <ClCompile Include="..\Private\MonsterBody04.cpp" />
+    <ClCompile Include="..\Private\MonsterBody05.cpp" />
+    <ClCompile Include="..\Private\MonsterBody06.cpp" />
+    <ClCompile Include="..\Private\MonsterBodyBase.cpp" />
+    <ClCompile Include="..\Private\MonsterBullet.cpp" />
+    <ClCompile Include="..\Private\MonsterManager.cpp" />
+    <ClCompile Include="..\Private\MonsterWeapon01.cpp" />
+    <ClCompile Include="..\Private\MonsterWeapon02.cpp" />
+    <ClCompile Include="..\Private\MonsterWeapon03.cpp" />
+    <ClCompile Include="..\Private\MonsterWeapon04.cpp" />
+    <ClCompile Include="..\Private\MonsterWeapon05.cpp" />
+    <ClCompile Include="..\Private\MonsterWeapon06.cpp" />
+    <ClCompile Include="..\Private\MonsterWeaponBase.cpp" />
+    <ClCompile Include="..\Private\Particle.cpp" />
+    <ClCompile Include="..\Private\ParticleBossRock.cpp" />
+    <ClCompile Include="..\Private\ParticleBossRockCol.cpp" />
+    <ClCompile Include="..\Private\ParticleBossRockColDust.cpp" />
+    <ClCompile Include="..\Private\ParticleBossRockColDustLighting.cpp" />
+    <ClCompile Include="..\Private\ParticleBossRockDust.cpp" />
+    <ClCompile Include="..\Private\ParticleBossSmash.cpp" />
+    <ClCompile Include="..\Private\ParticleBossSmashDust.cpp" />
+    <ClCompile Include="..\Private\ParticleBossWalk.cpp" />
+    <ClCompile Include="..\Private\ParticleManager.cpp" />
+    <ClCompile Include="..\Private\ParticleMonsterChase.cpp" />
+    <ClCompile Include="..\Private\ParticleMonsterDead.cpp" />
+    <ClCompile Include="..\Private\ParticleMonsterHit.cpp" />
+    <ClCompile Include="..\Private\ParticleMonsterSpawn.cpp" />
+    <ClCompile Include="..\Private\ParticlePlayerGunFire.cpp" />
+    <ClCompile Include="..\Private\ParticleProjectileHit.cpp" />
+    <ClCompile Include="..\Private\ParticleWall.cpp" />
+    <ClCompile Include="..\Private\ParticleFollowLightingDust.cpp" />
+    <ClCompile Include="..\Private\PiercingSwingTrail.cpp" />
+    <ClCompile Include="..\Private\PiercingTrail.cpp" />
+    <ClCompile Include="..\Private\Player.cpp" />
+    <ClCompile Include="..\Private\PlayerBody.cpp" />
+    <ClCompile Include="..\Private\PlayerBullet.cpp" />
+    <ClCompile Include="..\Private\PlayerWeapon.cpp" />
+    <ClCompile Include="..\Private\Projectile.cpp" />
+    <ClCompile Include="..\Private\ProjectileTrail.cpp" />
+    <ClCompile Include="..\Private\SkyBox.cpp" />
+    <ClCompile Include="..\Private\Spawner.cpp" />
+    <ClCompile Include="..\Private\SpawnTrigger.cpp" />
+    <ClCompile Include="..\Private\Stage01.cpp" />
+    <ClCompile Include="..\Private\StateObjectBody.cpp" />
+    <ClCompile Include="..\Private\StateObjectContainer.cpp" />
+    <ClCompile Include="..\Private\StateObjectWeapon.cpp" />
+    <ClCompile Include="..\Private\SwordTrail.cpp" />
+    <ClCompile Include="..\Private\Terrain.cpp" />
+    <ClCompile Include="..\Private\TestEffect.cpp" />
+    <ClCompile Include="..\Private\TestPanel.cpp" />
+    <ClCompile Include="..\Private\TestPlayer.cpp" />
+    <ClCompile Include="..\Private\TestPlayerBody.cpp" />
+    <ClCompile Include="..\Private\TestPlayerWeapon.cpp" />
+    <ClCompile Include="..\Private\TestTrail.cpp" />
+    <ClCompile Include="..\Private\Torch.cpp" />
+    <ClCompile Include="..\Private\TorchFire.cpp" />
+    <ClCompile Include="..\Private\Trigger.cpp" />
+    <ClCompile Include="..\Private\UIBG.cpp" />
+    <ClCompile Include="..\Private\UICrossHair.cpp" />
+    <ClCompile Include="..\Private\UIDamageFont.cpp" />
+    <ClCompile Include="..\Private\UIFont.cpp" />
+    <ClCompile Include="..\Private\UIHPBar.cpp" />
+    <ClCompile Include="..\Private\UIHPVertical.cpp" />
+    <ClCompile Include="..\Private\UIPlayerHPBarBG.cpp" />
+    <ClCompile Include="..\Private\UIPlayerInfoBG.cpp" />
+    <ClCompile Include="..\Private\UIPlayerTex.cpp" />
+    <ClCompile Include="..\Private\UITex.cpp" />
+    <ClCompile Include="..\Private\UITexPerspective.cpp" />
+    <ClCompile Include="..\Private\UITrigger.cpp" />
+    <ClCompile Include="..\Private\WallAABB.cpp" />
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Client.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxAnimMesh.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxCube_SkyBox.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxMesh.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex_Terrain_Brush.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPointInstance.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPointInstance_MonsterSpawn.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPointInstance_PlayerGunFire.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPointInstance_ProjectileHit.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPointInstance_WallHit.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosColor.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTex.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTexLoadingBar.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTexTime.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTex_UI.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxRectInstance.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxRectInstance_ProjectileHit.hlsl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

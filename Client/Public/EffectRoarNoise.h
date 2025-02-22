@@ -1,0 +1,36 @@
+#pragma once
+#include "Client_Defines.h"
+#include "Effect.h"
+
+BEGIN(Client)
+
+class CEffectRoarNoise final : public CEffect
+{
+private:
+	CEffectRoarNoise(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	CEffectRoarNoise(const CEffectRoarNoise& Prototype);
+	virtual ~CEffectRoarNoise() = default;
+
+public:
+	virtual HRESULT				InitializePrototype() override;
+	virtual HRESULT				Initialize(void* pArg) override;
+	virtual void				PriorityUpdate(_float fTimeDelta) override;
+	virtual void				Update(_float fTimeDelta) override;
+	virtual void				LateUpdate(_float fTimeDelta) override;
+	virtual HRESULT				Render() override;
+
+private:
+	void						UpdateScaling(_float fTimeDelat);
+	void						UpdateLoop(_float fTimeDelta);
+
+private:
+	virtual HRESULT				ReadyComponents() override;
+	virtual HRESULT				BindShaderResources() override;
+
+public:
+	static CEffectRoarNoise*	Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	virtual CGameObject*		Clone(void* pArg);
+	virtual void				Free() override;
+};
+
+END

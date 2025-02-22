@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="98.Default">
+      <UniqueIdentifier>{faba5543-ef80-4a55-8b4c-ed97ba59f1fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Map_Tool_Defines">
+      <UniqueIdentifier>{2de14953-b976-4429-9c3b-3421108547f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects">
+      <UniqueIdentifier>{897e0b27-391d-40fe-84bd-ea33f8db0531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Camera">
+      <UniqueIdentifier>{cf2d6a93-730a-4401-8310-55681c6bb02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Temp_Water">
+      <UniqueIdentifier>{18c80029-8652-41a2-a190-6c2638a693c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Terrain">
+      <UniqueIdentifier>{a1613859-4a9d-43d3-8767-d39df6c1b20f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Levels">
+      <UniqueIdentifier>{469eaa00-6434-4038-b88d-1a5dbedf2e72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Levels\Loading">
+      <UniqueIdentifier>{45e36a3f-03a4-4cc9-a62d-66e7100874d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Levels\Loading\Loader">
+      <UniqueIdentifier>{0bd9ede7-27ee-4e34-92e9-087b9ec8d042}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Levels\Map_Tool">
+      <UniqueIdentifier>{60323043-8bf5-4c09-b2a8-e925aae18e7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.MainApp">
+      <UniqueIdentifier>{2182d072-06ee-4cdc-9034-e18d1d9479be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="100.imgui">
+      <UniqueIdentifier>{8385b519-ad33-460d-8739-4384cd0474ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.ShaderFiles">
+      <UniqueIdentifier>{9d6eb005-dda1-4935-98c6-35c5d8137911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\TempCube">
+      <UniqueIdentifier>{7bdb150b-ca91-4c0e-96ff-c8ca88d5a1a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\TestModel">
+      <UniqueIdentifier>{cdb6197a-4ac3-4970-866c-5d8318bef467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Stages">
+      <UniqueIdentifier>{0179413f-dc74-4882-a5f0-839f8284850a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Stages\Stage_01">
+      <UniqueIdentifier>{c7ce73f3-ba70-4976-a111-45388ec3427a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Stages\Boss_Stage">
+      <UniqueIdentifier>{f04972dc-7198-418c-b773-357335e66657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\ColCube">
+      <UniqueIdentifier>{1f7bb082-8c2e-4613-a2bc-4fd823fe05b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Col_Floor">
+      <UniqueIdentifier>{ed4c3cae-019a-423e-acc8-5c71e9375082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="101.Converter">
+      <UniqueIdentifier>{0ceed0bd-6024-458d-8815-8313a76fdc08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="102.AsDefines">
+      <UniqueIdentifier>{c43d47f2-8cfd-4678-ac4d-72bca01e86a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Player">
+      <UniqueIdentifier>{2102b04a-55ff-4a79-9d4a-e34185d1133d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Tool_Default_Monster_01">
+      <UniqueIdentifier>{b36f9584-faca-4aa3-b100-7b48b46cba14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\TestModel\Body">
+      <UniqueIdentifier>{3cd2e02a-432f-473a-b5ef-632585f7a6ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\TestModel\Weapon">
+      <UniqueIdentifier>{bd298b16-1131-417a-ad77-7711a62a4502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Particle">
+      <UniqueIdentifier>{9cf26d6b-d0ed-421b-8747-74ab576982e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Particle\Snow">
+      <UniqueIdentifier>{866365cc-42a4-41cf-9ee3-ebe8fb25aa27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Particle\Explosion">
+      <UniqueIdentifier>{d9202d04-febe-4ca7-8ed0-4a71d17be540}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters">
+      <UniqueIdentifier>{fee82047-5905-444c-869c-3a8348526b88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters\Monster09">
+      <UniqueIdentifier>{c651dba9-0b64-40a8-9580-67549708bd9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters\Monster08">
+      <UniqueIdentifier>{c0c072fc-664c-438e-bfe1-1287a2063072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters\Monster07">
+      <UniqueIdentifier>{e823d36d-1082-4207-b544-065a7f06ffd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters\Monster06">
+      <UniqueIdentifier>{0993c97b-82f1-4d3a-9f2b-72b0a893fbe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters\Monster05">
+      <UniqueIdentifier>{91a918e5-7e0e-43d6-85ba-e0abcc728a04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters\Monster04">
+      <UniqueIdentifier>{0f14743f-beb5-420e-b8d2-b1c9c447df2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters\Monster03">
+      <UniqueIdentifier>{628621cb-ad75-450c-80c6-0bcbd5796c56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters\Monster02">
+      <UniqueIdentifier>{a92fac95-d148-49c9-aa32-d20d5fe3e784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\AABB">
+      <UniqueIdentifier>{ebf8aa60-993d-45b3-9b5b-228ec7678840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Trigger">
+      <UniqueIdentifier>{4d599b81-1ef7-4850-adac-7a1cc423abfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Trigger\Spawn">
+      <UniqueIdentifier>{37c0d733-f57c-4c15-b7ab-f04da9fb3bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Trigger\Spawn\Spawner">
+      <UniqueIdentifier>{64f842a2-4bad-4600-96b2-9ec8a9127740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Trigger\Inter">
+      <UniqueIdentifier>{0f2a331f-387f-4f60-905d-610bb86d1222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Trigger\Inter\InterMove">
+      <UniqueIdentifier>{c0cb150e-53e1-4cb0-af66-43484263fd19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Trigger\Inter\InterMove\InterMoveEndPos">
+      <UniqueIdentifier>{69a708b3-4efa-4055-aab8-8347fa63530c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Monsters\Boss">
+      <UniqueIdentifier>{c235d53b-a95d-406f-b76f-abf5560b0618}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Map_Tool.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imgui.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imgui_impl_dx11.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imgui_impl_win32.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imgui_internal.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imstb_rectpack.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imstb_textedit.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imstb_truetype.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imconfig.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\MainApp.h">
+      <Filter>00.MainApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_Loading.h">
+      <Filter>01.Levels\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Loader.h">
+      <Filter>01.Levels\Loading\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_Tool.h">
+      <Filter>01.Levels\Map_Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\TempWater.h">
+      <Filter>02.Objects\Temp_Water</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Defines.h">
+      <Filter>99.Map_Tool_Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Terrain.h">
+      <Filter>02.Objects\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Main_Camera.h">
+      <Filter>02.Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\TempCube.h">
+      <Filter>02.Objects\TempCube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\TestModel.h">
+      <Filter>02.Objects\TestModel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Default_Monster_01.h">
+      <Filter>02.Objects\Tool_Default_Monster_01</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Stage_01.h">
+      <Filter>02.Objects\Stages\Stage_01</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Boss_Stage.h">
+      <Filter>02.Objects\Stages\Boss_Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\ColCube.h">
+      <Filter>02.Objects\ColCube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\ColFloor.h">
+      <Filter>02.Objects\Col_Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Converter.h">
+      <Filter>101.Converter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\AsTypes.h">
+      <Filter>101.Converter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Private\Tool_Player.h">
+      <Filter>02.Objects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Private\Monster02.h">
+      <Filter>02.Objects\Monsters\Monster02</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Private\Monster03.h">
+      <Filter>02.Objects\Monsters\Monster03</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Private\Monster04.h">
+      <Filter>02.Objects\Monsters\Monster04</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Private\Monster05.h">
+      <Filter>02.Objects\Monsters\Monster05</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Private\Monster06.h">
+      <Filter>02.Objects\Monsters\Monster06</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Private\Monster08.h">
+      <Filter>02.Objects\Monsters\Monster08</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Monster07.h">
+      <Filter>02.Objects\Monsters\Monster07</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\TestModelBody.h">
+      <Filter>02.Objects\TestModel\Body</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\TestModelWeapon.h">
+      <Filter>02.Objects\TestModel\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Monster09.h">
+      <Filter>02.Objects\Monsters\Monster09</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\ParticleSnow.h">
+      <Filter>02.Objects\Particle\Snow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\AABB.h">
+      <Filter>02.Objects\AABB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Spawner.h">
+      <Filter>02.Objects\Trigger\Spawn\Spawner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\SpawnTrigger.h">
+      <Filter>02.Objects\Trigger\Spawn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\InterMoveTool.h">
+      <Filter>02.Objects\Trigger\Inter\InterMove</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\InterMoveEndPos.h">
+      <Filter>02.Objects\Trigger\Inter\InterMove\InterMoveEndPos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\BossTool.h">
+      <Filter>02.Objects\Monsters\Boss</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Map_Tool.ico">
+      <Filter>98.Default</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>98.Default</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Map_Tool.rc">
+      <Filter>98.Default</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Map_Tool.cpp">
+      <Filter>98.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\MainApp.cpp">
+      <Filter>00.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_Loading.cpp">
+      <Filter>01.Levels\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Loader.cpp">
+      <Filter>01.Levels\Loading\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_Tool.cpp">
+      <Filter>01.Levels\Map_Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\TempWater.cpp">
+      <Filter>02.Objects\Temp_Water</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Terrain.cpp">
+      <Filter>02.Objects\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Main_Camera.cpp">
+      <Filter>02.Objects\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\TempCube.cpp">
+      <Filter>02.Objects\TempCube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\TestModel.cpp">
+      <Filter>02.Objects\TestModel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Default_Monster_01.cpp">
+      <Filter>02.Objects\Tool_Default_Monster_01</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Stage_01.cpp">
+      <Filter>02.Objects\Stages\Stage_01</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Boss_Stage.cpp">
+      <Filter>02.Objects\Stages\Boss_Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\ColCube.cpp">
+      <Filter>02.Objects\ColCube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\ColFloor.cpp">
+      <Filter>02.Objects\Col_Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Converter.cpp">
+      <Filter>101.Converter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\AsTypes.cpp">
+      <Filter>101.Converter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Tool_Player.cpp">
+      <Filter>02.Objects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Monster02.cpp">
+      <Filter>02.Objects\Monsters\Monster02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Monster03.cpp">
+      <Filter>02.Objects\Monsters\Monster03</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Monster04.cpp">
+      <Filter>02.Objects\Monsters\Monster04</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Monster05.cpp">
+      <Filter>02.Objects\Monsters\Monster05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Monster06.cpp">
+      <Filter>02.Objects\Monsters\Monster06</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Monster08.cpp">
+      <Filter>02.Objects\Monsters\Monster08</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Monster07.cpp">
+      <Filter>02.Objects\Monsters\Monster07</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\TestModelBody.cpp">
+      <Filter>02.Objects\TestModel\Body</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\TestModelWeapon.cpp">
+      <Filter>02.Objects\TestModel\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Monster09.cpp">
+      <Filter>02.Objects\Monsters\Monster09</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\ParticleSnow.cpp">
+      <Filter>02.Objects\Particle\Snow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\AABB.cpp">
+      <Filter>02.Objects\AABB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Spawner.cpp">
+      <Filter>02.Objects\Trigger\Spawn\Spawner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\SpawnTrigger.cpp">
+      <Filter>02.Objects\Trigger\Spawn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\InterMoveTool.cpp">
+      <Filter>02.Objects\Trigger\Inter\InterMove</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\InterMoveEndPos.cpp">
+      <Filter>02.Objects\Trigger\Inter\InterMove\InterMoveEndPos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\BossTool.cpp">
+      <Filter>02.Objects\Monsters\Boss</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\00_Shader_VtxNorTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex_TempWater.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\01_Shader_VtxNorTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\02_Shader_VtxNorTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\00_Shader_Test_VtxMesh.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\00_Shader_VtxMesh.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\00_Shader_VtxNorTex_Cube.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosColor.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\00_Shader_VtxAnimMesh.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex_Terrain.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex_Terrain_Brush.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\02_Shader_VtxNorTex_Terrain_Brush.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxRectInstance.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,39 @@
+#pragma once
+#include "Base.h"
+
+BEGIN(Engine)
+
+class CShadow final : public CBase
+{
+public:
+	enum D3D_TRANSFORM_STATE { D3DTS_VIEW, D3DTS_PROJ, D3DTS_END, };
+
+
+private:
+	CShadow(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	virtual ~CShadow() = default;
+
+public:
+	const _float4x4* GetShadowTransform(D3D_TRANSFORM_STATE eState)
+	{ return &m_TransformMatrices[eState]; }
+
+public:
+	void SetUpTransformMatrix(D3D_TRANSFORM_STATE eState, _fmatrix TransformMatrix)
+	{ XMStoreFloat4x4(&m_TransformMatrices[eState], TransformMatrix); }
+
+public:
+	HRESULT						Initialize();
+	void						Update();
+
+private:
+	_float4x4					m_TransformMatrices[D3DTS_END];
+	_uint						m_iWidth{}, m_iHeight{};
+	ID3D11Device*				m_pDevice = nullptr;
+	ID3D11DeviceContext*		m_pContext = nullptr;
+
+public:
+	static CShadow*				Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	virtual void				Free() override;
+};
+
+END

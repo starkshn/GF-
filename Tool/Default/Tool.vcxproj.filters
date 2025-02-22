@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="98.Default">
+      <UniqueIdentifier>{b502c983-9105-4454-b29b-d62902c5c7bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Tool_Defines">
+      <UniqueIdentifier>{7de9d745-7e0d-49f3-82c0-49e7c1a4e49a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.MainApp">
+      <UniqueIdentifier>{17f9e159-4bdf-4007-8d09-2daa19982671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Levels">
+      <UniqueIdentifier>{95821ea6-def5-4cf8-aec8-4b4a4e2edd9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Levels\Loading">
+      <UniqueIdentifier>{012e3991-24dc-4216-acf9-13f23c22d594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Levels\Tool">
+      <UniqueIdentifier>{4b659de5-85d9-47a6-8865-80198bc13416}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Levels\Loading\Loader">
+      <UniqueIdentifier>{e8625d96-4491-4783-8f5c-b44fcdc7ba5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects">
+      <UniqueIdentifier>{cef20ce0-cc49-460b-af83-67a08770c6f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.ShaderFiles">
+      <UniqueIdentifier>{579e4f26-113a-4ece-8d00-dcd1f69b387b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Camera">
+      <UniqueIdentifier>{66953dc6-766d-4162-af21-73cdf2460eed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Temp_Warter">
+      <UniqueIdentifier>{acd8c564-2165-4b6b-a637-a1811839e954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Terrain">
+      <UniqueIdentifier>{3ed9fe90-1a86-43ca-83bc-85e86b0d0bb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Camera\Tool_Test_Camera">
+      <UniqueIdentifier>{b4be1042-e97a-45eb-b91c-5fb3d1f022b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Objects\Camera\Tool_Main_Camera">
+      <UniqueIdentifier>{7ca07ea5-bd41-4132-ac66-dd6dd76894c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="100.imgui">
+      <UniqueIdentifier>{ee59c0e7-c45c-46b9-92bc-0e0627acc786}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool.h">
+      <Filter>98.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Defines.h">
+      <Filter>99.Tool_Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\MainApp.h">
+      <Filter>00.MainApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Loader.h">
+      <Filter>01.Levels\Loading\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_Loading.h">
+      <Filter>01.Levels\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\TempWater.h">
+      <Filter>02.Objects\Temp_Warter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Level_Tool.h">
+      <Filter>01.Levels\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Terrain.h">
+      <Filter>02.Objects\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Camera.h">
+      <Filter>02.Objects\Camera\Tool_Test_Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Tool_Main_Camera.h">
+      <Filter>02.Objects\Camera\Tool_Main_Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imconfig.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imgui.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imgui_impl_dx11.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imgui_impl_win32.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imgui_internal.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imstb_rectpack.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imstb_textedit.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui\imstb_truetype.h">
+      <Filter>100.imgui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>98.Default</Filter>
+    </Image>
+    <Image Include="Tool.ico">
+      <Filter>98.Default</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Tool.rc">
+      <Filter>98.Default</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Tool.cpp">
+      <Filter>98.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\MainApp.cpp">
+      <Filter>00.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Loader.cpp">
+      <Filter>01.Levels\Loading\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_Loading.cpp">
+      <Filter>01.Levels\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\TempWater.cpp">
+      <Filter>02.Objects\Temp_Warter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Level_Tool.cpp">
+      <Filter>01.Levels\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Terrain.cpp">
+      <Filter>02.Objects\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Camera.cpp">
+      <Filter>02.Objects\Camera\Tool_Test_Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Tool_Main_Camera.cpp">
+      <Filter>02.Objects\Camera\Tool_Main_Camera</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex_TempWater.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxPosTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex.hlsl">
+      <Filter>97.ShaderFiles</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
