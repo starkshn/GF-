@@ -412,7 +412,7 @@
     <Filter Include="02.GameObjects\NonStateObject\UI\UICrossHair">
       <UniqueIdentifier>{c4c09184-6782-47de-8fc3-66e3beeff92c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObjects\NonStateObject\UI\UIHPVertical">
+    <Filter Include="02.GameObjects\NonStateObject\UI\UIHPVertical%28몬스터 맞을 때 직사각형%29">
       <UniqueIdentifier>{92c616df-4284-49d4-90a5-5a5b6d0c2233}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -835,7 +835,7 @@
       <Filter>02.GameObjects\NonStateObject\UI\UICrossHair</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\UIHPVertical.h">
-      <Filter>02.GameObjects\NonStateObject\UI\UIHPVertical</Filter>
+      <Filter>02.GameObjects\NonStateObject\UI\UIHPVertical%28몬스터 맞을 때 직사각형%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1234,7 +1234,7 @@
       <Filter>02.GameObjects\NonStateObject\UI\UICrossHair</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\UIHPVertical.cpp">
-      <Filter>02.GameObjects\NonStateObject\UI\UIHPVertical</Filter>
+      <Filter>02.GameObjects\NonStateObject\UI\UIHPVertical%28몬스터 맞을 때 직사각형%29</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -25,6 +25,7 @@ public:
 
 
 #ifdef _DEBUG
+
 public:
 	HRESULT AddDebugComponent(class CComponent* pDebugCom) 
 	{
@@ -90,13 +91,9 @@ private:
 
 
 #ifdef _DEBUG
+
 private:
 	list<CComponent*>		m_DebugComponents;
-
-#endif
-
-#ifdef _DEBUG
-
 	HRESULT					RenderRTVDebug();
 
 #endif 

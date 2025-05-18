@@ -1,6 +1,6 @@
 #pragma once
+#include "Client_Defines.h"
 #include "MonsterWeaponBase.h"
-
 
 BEGIN(Client)
 

@@ -44,6 +44,7 @@ HRESULT CRenderer::Initialize()
     if (FAILED(m_pGameInst->AddRenderTarget(TEXT("TargetPickingWorld"), (_uint)ViewPortDesc.Width, (_uint)ViewPortDesc.Height, DXGI_FORMAT_R32G32B32A32_FLOAT, _float4(0.f, 0.f, 0.f, 0.f)))) 
         return E_FAIL;
 
+    // 초록색으로 그려지는 렌더링 타겟
     if (FAILED(m_pGameInst->AddRenderTarget(TEXT("TargetOuterPre"), (_uint)ViewPortDesc.Width, (_uint)ViewPortDesc.Height, DXGI_FORMAT_R32G32B32A32_FLOAT, _float4(0.f, 0.f, 0.f, 0.f))))
         return E_FAIL;
 
@@ -72,8 +73,6 @@ HRESULT CRenderer::Initialize()
     if (FAILED(m_pGameInst->AddRenderTarget(TEXT("TargetBlurX"), (_uint)ViewPortDesc.Width, (_uint)ViewPortDesc.Height, DXGI_FORMAT_R8G8B8A8_UNORM, _float4(1.f, 1.f, 1.f, 1.f))))
         return E_FAIL;
     
-
-
     if (FAILED(m_pGameInst->AddRenderTarget(TEXT("TargetOuter"), (_uint)ViewPortDesc.Width, (_uint)ViewPortDesc.Height, DXGI_FORMAT_R8G8B8A8_UNORM, _float4(0.f, 0.f, 0.f, 0.f))))
         return E_FAIL;
 
@@ -164,7 +163,7 @@ HRESULT CRenderer::Initialize()
             return E_FAIL;
     }
 
-
+    // Glow
     {
         // MRTGlow
         {
@@ -238,7 +237,7 @@ HRESULT CRenderer::Initialize()
     // m_pGameInst->ReadyRTVDebug(TEXT("TargetHeight"), 550.f, Y, 100.f, 100.f);
     // m_pGameInst->ReadyRTVDebug(TEXT("TargetLightDepth"), 650.f, Y, 100.f, 100.f);
 
-    m_pGameInst->ReadyRTVDebug(TEXT("TargetGlow"), 150.f, Y -150.f, 300.f, 300.f);
+    // m_pGameInst->ReadyRTVDebug(TEXT("TargetGlow"), 150.f, Y -150.f, 300.f, 300.f);
     // m_pGameInst->ReadyRTVDebug(TEXT("TargetGlowFinal"), 150.f, Y - 450.f, 300.f, 300.f);
 
 
@@ -251,8 +250,9 @@ HRESULT CRenderer::Initialize()
 
     // m_pGameInst->ReadyRTVDebug(TEXT("TargetDistortion"), 150.f, Y - 150.f, 300.f, 300.f);
 
+    // 외곽선
     // m_pGameInst->ReadyRTVDebug(TEXT("TargetOuter"), 150.f, Y - 100.f, 300.f, 300.f);
-
+    // m_pGameInst->ReadyRTVDebug(TEXT("TargetOuterPre"), 450.f, Y - 100.f, 300.f, 300.f);
 
    /* m_pGameInst->ReadyRTVDebug(TEXT("TargetFinal"), 150.f, Y - 150.f, 300.f, 300.f);
     m_pGameInst->ReadyRTVDebug(TEXT("TargetShade"), 150.f, Y - 450.f, 300.f, 300.f);*/
@@ -635,10 +635,6 @@ HRESULT CRenderer::RenderOuter()
     m_pShader->BindMatrix("g_ViewMatrix", &m_ViewMatrix);
     m_pShader->BindMatrix("g_ProjMatrix", &m_ProjMatrix);
 
-    // 241228
-    //if (FAILED(m_pGameInst->BindRTShaderResource(m_pShader, "g_OuterTexture", TEXT("TargetOuter"))))
-    //    return E_FAIL;
-
     if (FAILED(m_pGameInst->BindRTShaderResource(m_pShader, "g_OuterPreTexture", TEXT("TargetOuterPre"))))
         return E_FAIL;
 
@@ -681,7 +677,7 @@ HRESULT CRenderer::RenderGlowCopy()
     _uint iNumViewPorts = 1;
     D3D11_VIEWPORT ViewPortDesc = {};
     m_pContext->RSGetViewports(&iNumViewPorts, &ViewPortDesc);
-    SetUpViewPort(ViewPortDesc.Width / 2, ViewPortDesc.Height / 2);
+    SetUpViewPort((_uint)(ViewPortDesc.Width / 2), (_uint)(ViewPortDesc.Height / 2));
 
     if (FAILED(m_pGameInst->BeginMRT(TEXT("MRTGlowCopy"), m_pGlowDepthStencilView)))
         return E_FAIL;
@@ -696,7 +692,7 @@ HRESULT CRenderer::RenderGlowCopy()
     if (FAILED(m_pGameInst->EndMRT()))
         return E_FAIL;
 
-    SetUpViewPort(ViewPortDesc.Width, ViewPortDesc.Height);
+    SetUpViewPort((_uint)ViewPortDesc.Width, (_uint)ViewPortDesc.Height);
 
     return S_OK;
 }
@@ -707,7 +703,7 @@ HRESULT CRenderer::RenderGlowBlurX()
     D3D11_VIEWPORT ViewPortDesc = {};
     m_pContext->RSGetViewports(&iNumViewPorts, &ViewPortDesc);
 
-    SetUpViewPort(ViewPortDesc.Width / 2, ViewPortDesc.Height / 2);
+    SetUpViewPort(_uint(ViewPortDesc.Width / 2), _uint(ViewPortDesc.Height / 2));
 
     if (FAILED(m_pGameInst->BeginMRT(TEXT("MRTGlowBlurX"), m_pGlowDepthStencilView)))
         return E_FAIL;
@@ -722,7 +718,7 @@ HRESULT CRenderer::RenderGlowBlurX()
     if (FAILED(m_pGameInst->EndMRT()))
         return E_FAIL;
 
-    SetUpViewPort(ViewPortDesc.Width, ViewPortDesc.Height);
+    SetUpViewPort(_uint(ViewPortDesc.Width), _uint(ViewPortDesc.Height));
 
     return S_OK;
 }
@@ -733,7 +729,7 @@ HRESULT CRenderer::RenderGlowBlurY()
     D3D11_VIEWPORT ViewPortDesc = {};
     m_pContext->RSGetViewports(&iNumViewPorts, &ViewPortDesc);
 
-    SetUpViewPort(ViewPortDesc.Width / 2, ViewPortDesc.Height / 2);
+    SetUpViewPort(_uint(ViewPortDesc.Width / 2), _uint(ViewPortDesc.Height / 2));
 
     if (FAILED(m_pGameInst->BeginMRT(TEXT("MRTGlowBlurY"), m_pGlowDepthStencilView)))
         return E_FAIL;
@@ -748,7 +744,7 @@ HRESULT CRenderer::RenderGlowBlurY()
     if (FAILED(m_pGameInst->EndMRT()))
         return E_FAIL;
 
-    SetUpViewPort(ViewPortDesc.Width, ViewPortDesc.Height);
+    SetUpViewPort(_uint(ViewPortDesc.Width), _uint(ViewPortDesc.Height));
 
     return S_OK;
 }
@@ -790,7 +786,6 @@ HRESULT CRenderer::RenderDistortion()
 
     return S_OK;
 }
-
 
 HRESULT CRenderer::RenderNonLight()
 {
@@ -859,19 +854,27 @@ HRESULT CRenderer::RenderRTVDebug()
     if (FAILED(m_pVIBuffer->BindBufferDesc()))
         return E_FAIL;*/
 
-    //if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTGameObjects"), m_pShader, m_pVIBuffer)))
-    //    return E_FAIL;
+   /* if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTGameObjects"), m_pShader, m_pVIBuffer)))
+        return E_FAIL;*/
+
     //if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTLightAcc"), m_pShader, m_pVIBuffer)))
     //    return E_FAIL;
     //// if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTHeight"), m_pShader, m_pVIBuffer)))
     //    // return E_FAIL;
+
+
     //if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTShadow"), m_pShader, m_pVIBuffer)))
     //    return E_FAIL;
 
+    // Outer
+   /* if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTOuter"), m_pShader, m_pVIBuffer)))
+        return E_FAIL;*/
 
-    if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTGlow"), m_pShader, m_pVIBuffer)))
-        return E_FAIL;
+    // Glow 디버그 렌더 타겟
+    //if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTGlow"), m_pShader, m_pVIBuffer)))
+    //    return E_FAIL;
 
+    // 아래 주석을 해제하면 단계적으로 디버그 렌더 타겟을 볼 수 있다.
     // if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTGlowCopy"), m_pShader, m_pVIBuffer))) return E_FAIL;
     // if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTGlowBlurX"), m_pShader, m_pVIBuffer))) return E_FAIL;
     // if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTGlowBlurY"), m_pShader, m_pVIBuffer))) return E_FAIL;
@@ -879,7 +882,6 @@ HRESULT CRenderer::RenderRTVDebug()
 
     /*if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTDistortion"), m_pShader, m_pVIBuffer)))
         return E_FAIL;*/
-
 
     //if (FAILED(m_pGameInst->RenderRTVDebug(TEXT("MRTFinal"), m_pShader, m_pVIBuffer)))
     //    return E_FAIL;
@@ -889,6 +891,8 @@ HRESULT CRenderer::RenderRTVDebug()
 
     return S_OK;
 }
+
+#endif
 
 HRESULT CRenderer::ReadyDepthStencilView(_uint iWidth, _uint iHeight)
 {
@@ -969,8 +973,6 @@ HRESULT CRenderer::SetUpViewPort(_uint iWidth, _uint iHeight)
 
     return S_OK;
 }
-
-#endif
 
 CRenderer* CRenderer::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {

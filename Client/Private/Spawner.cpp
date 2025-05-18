@@ -62,7 +62,8 @@ static _bool bOnce2 = true;
 
 void CSpawner::Update(_float fTimeDelta)
 {
-    m_pColliderCom->Update(m_pTransformCom->GetWorldMatrix());
+    if (m_pColliderCom)
+        m_pColliderCom->Update(m_pTransformCom->GetWorldMatrix());
 
 
     if (!bOnce)
@@ -94,7 +95,6 @@ HRESULT CSpawner::Render()
     return S_OK;
 }
 
-#ifdef _DEBUG
 
 HRESULT CSpawner::SpawnMonster()
 {
@@ -642,7 +642,6 @@ HRESULT CSpawner::ReadyComponents()
 
     return S_OK;
 }
-#endif
 
 
 //HRESULT CSpawner::ReadySpawnMonster()

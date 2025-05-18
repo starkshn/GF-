@@ -60,7 +60,9 @@ void CMonsterBullet::LateUpdate(_float fTimeDelta)
 
 HRESULT CMonsterBullet::Render()
 {
+#ifdef _DEBUG
 	m_pColliderCom->Render();
+#endif
 	return S_OK;
 }
 

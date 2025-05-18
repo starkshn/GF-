@@ -47,7 +47,8 @@ void CInterMoveEndPos::PriorityUpdate(_float fTimeDelta)
 
 void CInterMoveEndPos::Update(_float fTimeDelta)
 {
-    m_pColliderCom->Update(m_pTransformCom->GetWorldMatrix());
+    if (m_pColliderCom)
+        m_pColliderCom->Update(m_pTransformCom->GetWorldMatrix());
 }
 
 void CInterMoveEndPos::LateUpdate(_float fTimeDelta)

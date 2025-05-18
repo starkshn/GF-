@@ -132,12 +132,8 @@ void CBossBody::Update(_float fTimeDelta)
 		// FindAlertPoint(CMonsterBase::MONSTER_STATE::MS_ACTIVE, *m_pState, "ACTIVE", "ACTIVE");
 	}
 
-
-
-
 	if (false == m_bIsAnimationPlaying)
 		AnimationEnd();
-
 
 	static _bool bStart = false;
 
@@ -153,7 +149,6 @@ void CBossBody::Update(_float fTimeDelta)
 		}
 
 		cout << "노이즈 시작 까지 남은 시간 비율 : " << m_fDeadAccTime / m_fDeadMaxTime << endl;
-
 	}
 
 	if (m_bNoiseStart)
@@ -164,8 +159,8 @@ void CBossBody::Update(_float fTimeDelta)
 			m_fNoiseAccTime = 0.f;
 			EndNoise();
 		}
-		cout << "노이즈 시간 비율 : " << m_fNoiseAccTime / m_fNoiseMaxTime << endl;
 
+		cout << "노이즈 시간 비율 : " << m_fNoiseAccTime / m_fNoiseMaxTime << endl;
 
 		static _bool bOnce = false;
 		if (!bOnce)
@@ -174,7 +169,6 @@ void CBossBody::Update(_float fTimeDelta)
 			m_pGameInst->PlayEffect(TEXT("BossDeadFinal.mp3"), 1.f);
 		}
 	}
-
 
 	CheckAlertPointSoundName();
 }

@@ -57,6 +57,7 @@ void CCellLine::SetStartEndLinePos(_fvector vStart, _fvector vEnd)
     m_pVIBuffer->SetStartEnd(vStart, vEnd);
 }
 
+#ifdef _DEBUG
 HRESULT CCellLine::Render()
 {
     if (FAILED(m_pShader->BindMatrix("g_WorldMatrix", &m_WorldMatrix)))
@@ -78,6 +79,7 @@ HRESULT CCellLine::Render()
 
     return S_OK;
 }
+#endif
 
 CCellLine* CCellLine::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {

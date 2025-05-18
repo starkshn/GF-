@@ -61,7 +61,6 @@ HRESULT CEffectProjectileWallHitFront::Render()
         m_pVIBufferCom->Render();
     }
 
-
     return S_OK;
 }
 

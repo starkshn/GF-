@@ -1,6 +1,9 @@
 #pragma once
 #include "Client_Defines.h"
 #include "Effect.h"
+
+BEGIN(Client)
+
 class CEffectBossRockAlertFinal final : public CEffect
 {
 private:
@@ -31,3 +34,4 @@ public:
 	virtual void				Free() override;
 };
 
+END

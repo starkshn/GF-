@@ -183,11 +183,6 @@ _bool CMonsterBase::UpdateStateCloseRangeAttackMonster(_float fTimeDelta)
 					_int iRand = rand() % 2;
 					MONSTER_STATE eRollState = iRand == 0 ? MONSTER_STATE::MS_ROLL_LEFT : MONSTER_STATE::MS_ROLL_RIGHT;
 					SetForceState(eRollState);
-
-					// 241217 이상하다 -> 폐기
-					/*if (m_bCanRoll)
-						CEffectManager::GetInstance()->ActiveEffect(CEffectManager::CHASE_TRAIL, HIT_RESULT{}, this);*/
-
 					return true;
 				}
 
@@ -197,17 +192,11 @@ _bool CMonsterBase::UpdateStateCloseRangeAttackMonster(_float fTimeDelta)
 					RememberPrevState();
 					SubState(m_iState);
 					SetForceState(MONSTER_STATE::MS_ATTACK);
-
-
-
-
 					return true;
 				}
 				// CHASE상태인데, 공격 범위에 있지 않다면
 				else
 				{
-					// RememberPrevState();
-					// SubState(m_iState);
 					return false;
 				}
 			}
@@ -320,30 +309,8 @@ _bool CMonsterBase::UpdateStateFarRangeAttackMonster(_float fTimeDelta)
 			}
 			else if (MONSTER_STATE::MS_MOVE_BACK & m_iState)
 			{
-				//if (IsTargetInRollRange() && ((MONSTER_STATE::MS_ROLL_RIGHT ^ m_iState) && (MONSTER_STATE::MS_ROLL_LEFT ^ m_iState)))
-				//{
-				//	if (m_bCanRollBack)
-				//	{
-				//		_int iRand = rand() % 3;
-				//		if (0 == iRand)
-				//			SetForceState(MONSTER_STATE::MS_ROLL_BACK);
-				//		else if (1 == iRand)
-				//			SetForceState(MONSTER_STATE::MS_ROLL_LEFT);
-				//		else if (2 == iRand)
-				//			SetForceState(MONSTER_STATE::MS_ROLL_RIGHT);
-
-				//		// SetForceState(MONSTER_STATE::MS_ROLL_RIGHT);
-				//	}
-				//	else
-				//	{
-				//		_int iRand = rand() % 2;
-				//		MONSTER_STATE eRollState = iRand == 0 ? MONSTER_STATE::MS_ROLL_LEFT : MONSTER_STATE::MS_ROLL_RIGHT;
-				//		SetForceState(eRollState);
-				//	}
-				//	return true;
-				//}
+				
 			}
-
 
 			if (MONSTER_STATE::MS_IDLE & m_iState)
 			{

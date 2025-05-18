@@ -14,12 +14,17 @@ CCollider::CCollider(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 CCollider::CCollider(const CCollider& Prototype)
     :
     CComponent(Prototype),
-    m_eType(Prototype.m_eType),
+    m_eType(Prototype.m_eType)
+#ifdef _DEBUG
+    ,
     m_pBatch(Prototype.m_pBatch),
     m_pEffect(Prototype.m_pEffect),
     m_pInputLayout(Prototype.m_pInputLayout)
+#endif
 {
+#ifdef _DEBUG
     SafeAddRef(m_pInputLayout);
+#endif
 }
 
 HRESULT CCollider::InitializePrototype(COLLIDER_TYPE eType)
@@ -77,8 +82,13 @@ HRESULT CCollider::Initialize(void* pArg)
 
 void CCollider::Update(_fmatrix WorldMatrix)
 {
+    if (m_pBounding == nullptr)
+        return;
+
+#ifdef _DEBUG
     if (nullptr == m_pBounding)
         return;
+#endif
 
     m_pBounding->Update(WorldMatrix);
 }
@@ -93,7 +103,6 @@ HRESULT CCollider::Render()
     m_pEffect->SetWorld(XMMatrixIdentity());
     m_pEffect->SetView(m_pGameInst->GetTransformMatrix(CPipeLine::D3DTS_VIEW));
     m_pEffect->SetProjection(m_pGameInst->GetTransformMatrix(CPipeLine::D3DTS_PROJ));
-
 
     m_pEffect->Apply(m_pContext);
     m_pContext->IASetInputLayout(m_pInputLayout);
@@ -240,9 +249,13 @@ void CCollider::Free()
 
     if (false == m_bIsCloned)
     {
+#ifdef _DEBUG
         SafeDelete(m_pBatch);
         SafeDelete(m_pEffect);
+#endif
     }
 
+#ifdef _DEBUG
     SafeRelease(m_pInputLayout);
+#endif
 }

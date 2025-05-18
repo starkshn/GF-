@@ -29,10 +29,10 @@ void CConverter::ExportAssetFile(const _char* pModelFilePath, const _char* pMode
     {
         // 1. 뼈 정보 쓰기
         {
-            aiNode* pAINode = m_pAIScene->mRootNode;                                        // 루트 노드 가져온다. (뼈의 시작점)
+            aiNode* pAINode = m_pAIScene->mRootNode; // 루트 노드 가져온다. (뼈의 시작점)
 
-            _int    iRootIndex = -1;                                                        // 루트 시작 인덱스
-            ReadBones(pAINode, iRootIndex, PreTransformMatrix);                   // 루트 부터 재귀적으로 뼈들의 정보를 읽어서 써준다.
+            _int    iRootIndex = -1; // 루트 시작 인덱스
+            ReadBones(pAINode, iRootIndex, PreTransformMatrix); // 루트 부터 재귀적으로 뼈들의 정보를 읽어서 써준다.
 
             // 1-1. 전체 뼈 개수 쓰기
             _int iLenBone = static_cast<_int>(m_BoneInfos.size());
@@ -79,7 +79,6 @@ void CConverter::ExportAssetFile(const _char* pModelFilePath, const _char* pMode
                     vChInfo.iNumKeyFrame = max(vChInfo.iNumKeyFrame, pAINodeAnim->mNumPositionKeys);
                     OutFile.write((_char*)&vChInfo, sizeof(AI_CHANNEL_INFO));
                     
-
                     _float3		vScale = {}, vPosition = {}; _float4	vRotation = {};
 
                     // i번째 애니매이션의 iChannelIndex번째 채널의 최대 키프레임 수만큼 루프를 돌며 KEYFRAME을 생성한다.
@@ -282,7 +281,6 @@ void CConverter::ExportAssetFile(const _char* pModelFilePath, const _char* pMode
                 }
             }
         }
-
     }
     else
     {

@@ -92,7 +92,6 @@ void CPlayer::Update(_float fTimeDelta)
     m_pColliderCom->Update(m_pTransformCom->GetWorldMatrix());
     __super::Update(fTimeDelta);
 
-
     if (m_bSkillMid)
     {
         m_fAccSkillMid += fTimeDelta;
@@ -361,7 +360,6 @@ void CPlayer::Keyinput(_float fTimeDelta)
     KeySkillMid(fTimeDelta);
     UpdateDashUI(fTimeDelta);
 
-
     if (m_1508Fire)
     {
         static _float fAcc = 0.f;
@@ -390,6 +388,7 @@ void CPlayer::KeyMove(_float fTimeDelta)
 
     if (m_pGameInst->KeyDown(KEY::W))
     {
+        // 키 입력 횟수 증가
         m_iMovePressCount++;
 
         // FRONT추가
@@ -821,8 +820,10 @@ void CPlayer::KeyFire(_float fTimeDelta)
 
 void CPlayer::KeySwap(_float fTimeDelta)
 {
+    // IDLE 또는 Walk상태에서만 스왑이 가능하도록 한다.
     if ((m_iState & IDLE) || (m_iState & WALK))
     {
+        // 1번 무기로 변경
         if (m_pGameInst->KeyDown(KEY::NUM1))
         {
             if (PLAYER_MODEL_INDEX::RIGHT_1201 != (PLAYER_MODEL_INDEX)m_iNextDrawModelIndex)
@@ -830,6 +831,7 @@ void CPlayer::KeySwap(_float fTimeDelta)
 
             UpdateUIGunMagSwap(0);
         }
+        // 2번 무기로 변경
         else if (m_pGameInst->KeyDown(KEY::NUM2))
         {
             if (PLAYER_MODEL_INDEX::RIGHT_1004 != (PLAYER_MODEL_INDEX)m_iNextDrawModelIndex)
@@ -837,7 +839,7 @@ void CPlayer::KeySwap(_float fTimeDelta)
 
             UpdateUIGunMagSwap(1);
         }
-            
+        // 3번 무기로 변경
         else if (m_pGameInst->KeyDown(KEY::NUM3))
         {
             if (PLAYER_MODEL_INDEX::RIGHT_1503 != (PLAYER_MODEL_INDEX)m_iNextDrawModelIndex)
@@ -845,7 +847,7 @@ void CPlayer::KeySwap(_float fTimeDelta)
 
             UpdateUIGunMagSwap(2);
         }
-
+        // 4번 무기로 변경
         else if (m_pGameInst->KeyDown(KEY::NUM4))
         {
             if (PLAYER_MODEL_INDEX::RIGHT_1508 != (PLAYER_MODEL_INDEX)m_iNextDrawModelIndex)

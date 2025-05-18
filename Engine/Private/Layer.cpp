@@ -29,7 +29,10 @@ void CLayer::PriorityUpdate(const _float& fTimeDelta)
 void CLayer::Update(const _float& fTimeDelta)
 {
     for (auto& pGameObj : m_GameObjects)
-        pGameObj->Update(fTimeDelta);
+    {
+        if (pGameObj)
+            pGameObj->Update(fTimeDelta);
+    }
 }
 
 void CLayer::Late_Update(const _float& fTimeDelta)

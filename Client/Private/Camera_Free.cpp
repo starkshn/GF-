@@ -190,6 +190,7 @@ void CCamera_Free::UpdateShake(_float fTimeDelta)
 
 void CCamera_Free::UpdateCinematic(_float fTimeDelta)
 {
+	const _float fDistance = 15.f;
 	static _float fMaxTime = 13.f;
 	static _float fAccTime = 0.f;
 	_vector vLookAtPos = { 0.f, 5.f, 50.f, 1.f };
@@ -207,7 +208,7 @@ void CCamera_Free::UpdateCinematic(_float fTimeDelta)
 			_vector vLook = -pTC->GetTransformState(CTransform::STATE_RIGHT);
 			_matrix RotY = XMMatrixRotationY(XMConvertToRadians(10.f * fAccTime));
 			_vector vRotDir = XMVector3Normalize(XMVector3TransformNormal(vLook, RotY));
-			_vector vDstPos = vTargetPos += vRotDir * 15.f;
+			_vector vDstPos = vTargetPos += vRotDir * fDistance;
 			vDstPos.m128_f32[1] = 2.f;
 
 			m_pTransformCom->SetTransformState(CTransform::STATE_POS, vDstPos);
@@ -217,22 +218,13 @@ void CCamera_Free::UpdateCinematic(_float fTimeDelta)
 		}
 	}
 
-
 	fAccTime += fTimeDelta * 2.f;
 	if (fAccTime >= fMaxTime)
 	{
 		fAccTime = 0.f;
 		m_eEffectType = EFFECT_DEFAULT;
 		m_pGameInst->RenderOnPlayerUI();
-
 	}
-	else
-	{
-		// m_pTransformCom->LookAt(vLookAtPos);
-		// m_pTransformCom->GetWorldMatrix();
-	}
-
-	
 }
 
 CCamera_Free* CCamera_Free::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

@@ -217,6 +217,9 @@
     <Filter Include="01.Utility\14.Sound\Headers">
       <UniqueIdentifier>{5ae762cf-6593-4e9e-9dcf-d11fdbec0ef7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\15.xml">
+      <UniqueIdentifier>{0568f027-6253-4019-91d0-a0c56106bd2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Base.h">
@@ -459,6 +462,9 @@
     <ClInclude Include="..\Public\Sounds\fmod.h">
       <Filter>01.Utility\14.Sound\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\tinyxml2\tinyxml2.h">
+      <Filter>01.Utility\15.xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Private\Base.cpp">
@@ -667,6 +673,9 @@
     </ClCompile>
     <ClCompile Include="..\Private\SoundManager.cpp">
       <Filter>01.Utility\14.Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\tinyxml2.cpp">
+      <Filter>01.Utility\15.xml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

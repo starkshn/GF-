@@ -160,6 +160,8 @@ HRESULT CUIDamageFont::ReadyComponents(void* pArg)
 
 	if (FAILED(AddComponent(LEVEL_GLOBAL, TEXT("Prototype_Component_Texture_UI_Font_11"), TEXT("Com_Texture_11"), reinterpret_cast<CComponent**>(&m_pTextureComs[11]))))
 		return E_FAIL;
+
+	return S_OK;
 }
 
 CUIDamageFont* CUIDamageFont::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)

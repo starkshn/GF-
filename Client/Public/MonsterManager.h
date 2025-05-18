@@ -12,7 +12,6 @@ END
 
 
 
-
 BEGIN(Client)
 
 class CMonsterManager : public CBase
@@ -92,6 +91,11 @@ private:
 
 
 	_bool				m_bActiveUpdate = false;
+
+private:
+	const _float		m_fMiniMapSize = 250.f;
+
+
 
 private:
 	_bool				m_bDeadSoundOnce = true;

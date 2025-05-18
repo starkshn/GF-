@@ -163,7 +163,7 @@ void CMonsterBody03::InitializeAnimNameAndIndex()
 	{
 		CAnimation* pAnim = m_pModelComs[0]->GetAnimation(20);
 		pAnim->InsertAlertPoint("ATTACK01_START", 0.2f);
-		pAnim->InsertAlertPointSound("ATTACK01", 0.2);
+		pAnim->InsertAlertPointSound("ATTACK01", 0.2f);
 	}
 	// m_pModelComs[0]->SetAnimationName(14, "ATTACK02");
 

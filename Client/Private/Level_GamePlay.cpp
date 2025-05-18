@@ -485,7 +485,6 @@ void CLevel_GamePlay::Update(const _float& fTimeDelta)
         pObj->SetActive(true);
         m_pGameInstance->StopBGM();
 
-
         {
             {
                 auto pObj = static_cast<CUIObject*>(m_pGameInstance->GetGameObjctInLayerBack(LEVEL_GLOBAL, LEVEL_GLOBAL, TEXT("Layer_LoadingBar")));
@@ -500,9 +499,6 @@ void CLevel_GamePlay::Update(const _float& fTimeDelta)
                 static_cast<CLoadingColor*>(pObj)->SetcurLoadCnt(0);
             }
         }
-
-
-
 
         m_pGameInstance->RenderOffPlayerUI();
 
@@ -1116,7 +1112,7 @@ HRESULT CLevel_GamePlay::ReadyLayerEffectProjectileWallHitFromGlobal(const _wstr
 {
     CEffect::EFFECT_DESC Desc = {};
     Desc.bUseFrameEffect = false;
-    Desc.fMaxLifeTime = 0.25f;
+    Desc.fMaxLifeTime = 0.3f;
     Desc.strObjectTag = "EffectProjectileWallHit";
     Desc.fSpeedPerSec = 0.f;
     Desc.fRotSpeedPerSec = 0.f;
@@ -1166,7 +1162,7 @@ HRESULT CLevel_GamePlay::ReadyLayerEffectProjectileWallHitFrontFromGlobal(const 
     {
         CEffect::EFFECT_DESC Desc = {};
         Desc.bUseFrameEffect = false;
-        Desc.fMaxLifeTime = 0.15f;
+        Desc.fMaxLifeTime = 0.3f;
         Desc.strObjectTag = "EffectProjectileWallHitFront";
         Desc.fSpeedPerSec = 0.f;
         Desc.fRotSpeedPerSec = 0.f;
@@ -3341,7 +3337,6 @@ HRESULT CLevel_GamePlay::ReadyMiniMap()
 
         m_pGameInstance->AddPlayerUI(pObj);
 
-
         // PlayerPos
         {
             CUITex::UI_TEX_DESC Desc = {};
@@ -3689,11 +3684,13 @@ HRESULT CLevel_GamePlay::ReadyTestS()
 
 }
 
-#ifdef _DEBUG
+
 void CLevel_GamePlay::GoBossLevel()
 {
     m_bMoveBossLevel = true;
 }
+
+#ifdef _DEBUG
 void CLevel_GamePlay::InitializeImgui()
 {
     // ImGui 컨텍스트 생성

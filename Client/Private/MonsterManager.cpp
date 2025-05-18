@@ -134,47 +134,86 @@ void CMonsterManager::FindDeadMonster()
                     if (m_bDeadSoundOnce)
                     {
                         m_bDeadSoundOnce = false;
-                        // m_pGameInst->PlayEffect(TEXT("MonsterDead.mp3"), 1.f);
                     }
                 }
 
-                // 안 죽은 경우
+                // 안 죽은 경우 (pMonster nullptr이 아니고 && 죽지 않았고 && 다음틱에 사라질 예정이 아닌 경우
                 if (nullptr != pMonster && !pMonster->IsDead() && !pMonster->GetRemoveFromLayerNextTick())
                 {
                     _int iCurLevel = m_pGameInst->GetCurrentLevelIndex();
-                    CTransform* pCom = static_cast<CTransform*>(m_pGameInst->GetGameObjctInLayerBack(LEVEL_GLOBAL, iCurLevel, TEXT("A"))->GetComponent(TEXT("Com_Transform")));
-                    CTransform* pMonCom = static_cast<CTransform*>(pMonster->GetComponent(TEXT("Com_Transform")));
+                    CTransform* pPlayerTransformCom = static_cast<CTransform*>(m_pGameInst->GetGameObjctInLayerBack(LEVEL_GLOBAL, iCurLevel, TEXT("A"))->GetComponent(TEXT("Com_Transform")));
+                    CTransform* pMonsterTransformCom = static_cast<CTransform*>(pMonster->GetComponent(TEXT("Com_Transform")));
 
-
-                    if (pCom && pMonCom)
+                    if (pPlayerTransformCom && pMonsterTransformCom)
                     {
-                        const static _float fSCX = 125.f + 30.f;
-                        const static _float fSCY = 125.f + 30.f;
+                        // 미니맵 UI 객체의 스크린 좌표계 기준 중심 위치
+                        // 미니맵 스크린 좌표계 중심점 : [ 155, 155 ]
+                        const static _float fMiniMapCenterPosX = 125.f + 30.f;    // MiniMap 중심 ScreenX
+                        const static _float fMiniMapCenterPosY = 125.f + 30.f;    // MiniMap 중심 ScreenY
 
-                        const static _float fMinSX = fSCX - 80.f;
-                        const static _float fMaxSX = fSCX + 80.f;
-                        const static _float fMinSY = fSCY - 80.f;
-                        const static _float fMaxSY = fSCY + 80.f;
+                        const static _float fMiniMapMinPosX = fMiniMapCenterPosX - 80.f;   // MiniMap 최소 X 위치
+                        const static _float fMiniMapMinPosY = fMiniMapCenterPosY - 80.f;   // MiniMap 최소 Y 위치
 
-                        _vector vPlayerPos = pCom->GetTransformState(CTransform::STATE_POS);
-                        _vector vMonsterPos = pMonCom->GetTransformState(CTransform::STATE_POS);
+                        const static _float fMiniMapMaxPosX = fMiniMapCenterPosX + 80.f;   // MiniMap 최대 X 위치
+                        const static _float fMiniMapMaxPosY = fMiniMapCenterPosY + 80.f;   // MiniMap 최대 Y 위치
 
-                        _float fDistX = XMVectorGetX(vMonsterPos) - XMVectorGetX(vPlayerPos);
-                        _float fDistZ = XMVectorGetZ(vMonsterPos) - XMVectorGetZ(vPlayerPos);
+                        // --- 플레이어와 몬스터의 월드 좌표 가져오기 ---
+                        _vector vPlayerPos = pPlayerTransformCom->GetTransformState(CTransform::STATE_POS);
+                        _vector vMonsterPos = pMonsterTransformCom->GetTransformState(CTransform::STATE_POS);
 
-                        // 월드에서 미니맵이 표현할 최대 거리
-                        _float fWorldRange = 30.f;
+                        // --- 플레이어와 몬스터 간 거리 계산 ---
+                        // 월드에서 몬스터와 플레이어의 상대 거리 (fDistX, fDistZ)
+                        _float fDistX = XMVectorGetX(vMonsterPos) - XMVectorGetX(vPlayerPos);   // X 축 거리
+                        _float fDistZ = XMVectorGetZ(vMonsterPos) - XMVectorGetZ(vPlayerPos);   // Z 축 거리 (Y가 아니라 Z사용)
 
-                        _float fMiniMapX = fSCX + (fDistX / fWorldRange) * (250.f * 0.5f);
-                        _float fMiniMapY = fSCY - (fDistZ / fWorldRange) * (250.f * 0.5f);
+                        // --- 월드에서 미니맵이 표현할 최대 거리 ---
+                        const _float fWorldRange = 30.f; // 플레이어를 기준으로 반경 30까지의 몬스터 위치만 미니맵에 표시
+                        
+                        // --- 월드 좌표 -> 미니맵 좌표 변환 ---
+                        // 미니맵 크기 (250x250) 중 절반을 기준으로 비율을 조정하여 위치를 변환한다.
+                        // (fDistX / fWorldRange) : 몬스터가 플레이어 기준으로 얼마나 떨어져 있는지를 비율(정규화 된 값)으로 변환. fWorldRange 안에서는 -1.0 ~ 1.0 사이의 값이 나오게 됩니다.
+                        // (m_fMiniMapSize * 0.5f) : 미니맵의 크기를 반으로 나눈 값(125)를 곱하여 미니맵에서의 상대적 좌표를 구합니다.
+                        _float fInMiniMapPosX = fMiniMapCenterPosX + (fDistX / fWorldRange) * (m_fMiniMapSize * 0.5f);
 
-                        if (fMiniMapX < fMinSX || fMiniMapX > fMaxSX || fMiniMapY < fMinSY || fMiniMapY > fMaxSY)
+                        // (fDistZ / fWorldRange) : Z축 거리도 X축과 같은 방식으로 정규화 합니다.
+                        // (m_fMiniMapSize * 0.5f) : 마찬가지로 미니맵에서의 상대적인 거리 값을 구하기 위해 곱합니다.
+                        // (fMiniMapCenterPosY - ) : Y축은 -를 붙여서 반전합니다. DX11 월드 좌표계에서는 Z축이 앞뒤 방향을 담당하는데 +Z는 앞으로 가는 방향 -Z는 뒤로가는 방향입니다.
+                        // - 하지만 미니맵에서는 +Y 방향이 위쪽이 되어야 하므로, -fMiniMapCenterPosY - ... 로 Y축을 반전시켜줍니다.
+                        _float fInMiniMapPosY = fMiniMapCenterPosY - (fDistZ / fWorldRange) * (m_fMiniMapSize * 0.5f);  // Y축은 반전(-) 시켜야 미니맵과 월드의 방향이 일치
+                       
+                        // 플레이어 (0, 0, 0), 몬스터 (10, 0, -15)인 경우
+                        // 
+                        // fInMiniMapPosX = 155 + (10 / 30) * (250 * 0.5)
+                        // = 155 + (10 / 30) * 125
+                        // = 155 + (1 / 3) * 125
+                        // = 155 + 41.67
+                        // = 196.67
+
+                        // fInMiniMapPosY = 155 - (-15 / 30) * (250 * 0.5)
+                        // = 155 - (-15 / 30) * 125
+                        // = 155 - (-1 / 2) * 125
+                        // = 155 + 62.5
+                        // = 217.5
+
+                        // --- 미니맵 내부에 존재하는지 확인 ---
+                        if (fInMiniMapPosX < fMiniMapMinPosX || fInMiniMapPosX > fMiniMapMaxPosX || fInMiniMapPosY < fMiniMapMinPosY || fInMiniMapPosY > fMiniMapMaxPosY)  // 미니맵 범위를 벗어난 경우 표시하지 않음
                             continue;
 
+                        // --- 현재 뷰포트(화면 크기) 정보 가져오기 ---
                         D3D11_VIEWPORT  ViewPortDesc = m_pGameInst->GetViewPortDesc();
 
-                        _vector vNewWorldPos = { fMiniMapX - ViewPortDesc.Width * 0.5f, -fMiniMapY + ViewPortDesc.Height * 0.5f, 0.0f, 1.f };
+                        // --- 미니맵 좌표를 화면 좌표계(World Space)로 변환 ---
+                        // (뷰포트의 중심을 기준으로 위치를 조정)
+                        _vector vNewWorldPos = 
+                        { 
+                            fInMiniMapPosX - ViewPortDesc.Width * 0.5f,      // X 좌표 이동
+                            -fInMiniMapPosY + ViewPortDesc.Height * 0.5f,    // Y 좌표 반전 및 이동
+                            0.0f,       // Z 좌표 (미니맵에서는 사용되지 않는다)
+                            1.f         // W값
+                        };
 
+
+                        // 변환된 좌표를 저장 (추후 미니맵에 렌더링할 위치로 사용)
                         vWorldPoses.push_back(vNewWorldPos);
                     }
                     else
@@ -194,7 +233,6 @@ void CMonsterManager::FindDeadMonster()
         pPanel->SetEleWorldPoses(vWorldPoses);
         vWorldPoses.clear();
     }
-
 
     if (nullptr != m_pBossLayer)
     {
@@ -216,7 +254,7 @@ void CMonsterManager::FindDeadMonster()
         const static _float fSCX = 125.f + 30.f;
         const static _float fSCY = 125.f + 30.f;
 
-        const static _float fMinSX = fSCX - 85.f;
+        const static _float fMiniMapMinPosX = fSCX - 85.f;
         const static _float fMaxSX = fSCX + 85.f;
         const static _float fMinSY = fSCY - 85.f;
         const static _float fMaxSY = fSCY + 85.f;
@@ -227,10 +265,10 @@ void CMonsterManager::FindDeadMonster()
         // 월드에서 미니맵이 표현할 최대 거리
         _float fWorldRange = 30.f;
 
-        _float fMiniMapX = fSCX + (fDistX / fWorldRange) * (250.f * 0.5f);
-        _float fMiniMapY = fSCY - (fDistZ / fWorldRange) * (250.f * 0.5f);
+        _float fMiniMapX = fSCX + (fDistX / fWorldRange) * (m_fMiniMapSize * 0.5f);
+        _float fMiniMapY = fSCY - (fDistZ / fWorldRange) * (m_fMiniMapSize * 0.5f);
 
-        if (fMiniMapX < fMinSX || fMiniMapX > fMaxSX || fMiniMapY < fMinSY || fMiniMapY > fMaxSY)
+        if (fMiniMapX < fMiniMapMinPosX || fMiniMapX > fMaxSX || fMiniMapY < fMinSY || fMiniMapY > fMaxSY)
         {
             if (pPanel)
                 pPanel->SetBossPos(_vector{}, false);
@@ -465,7 +503,7 @@ void CMonsterManager::UpdateMiniMapDoor()
                         const static _float fSCX = 125.f + 30.f;
                         const static _float fSCY = 125.f + 30.f;
 
-                        const static _float fMinSX = fSCX - 80.f;
+                        const static _float fMiniMapMinPosX = fSCX - 80.f;
                         const static _float fMaxSX = fSCX + 80.f;
                         const static _float fMinSY = fSCY - 80.f;
                         const static _float fMaxSY = fSCY + 80.f;
@@ -476,10 +514,10 @@ void CMonsterManager::UpdateMiniMapDoor()
                         // 월드에서 미니맵이 표현할 최대 거리
                         _float fWorldRange = 30.f;
 
-                        _float fMiniMapX = fSCX + (fDistX / fWorldRange) * (250.f * 0.5f);
-                        _float fMiniMapY = fSCY - (fDistZ / fWorldRange) * (250.f * 0.5f);
+                        _float fMiniMapX = fSCX + (fDistX / fWorldRange) * (m_fMiniMapSize * 0.5f);
+                        _float fMiniMapY = fSCY - (fDistZ / fWorldRange) * (m_fMiniMapSize * 0.5f);
 
-                        if (fMiniMapX < fMinSX || fMiniMapX > fMaxSX || fMiniMapY < fMinSY || fMiniMapY > fMaxSY)
+                        if (fMiniMapX < fMiniMapMinPosX || fMiniMapX > fMaxSX || fMiniMapY < fMinSY || fMiniMapY > fMaxSY)
                         {
                             return;
                         }

@@ -124,7 +124,9 @@ void CPlayerWeapon::LateUpdate(_float fTimeDelta)
 
 HRESULT CPlayerWeapon::Render()
 {
+#ifdef _DEBUG
     m_pColliderCom->Render();
+#endif
 
     return S_OK;
 }
@@ -280,8 +282,8 @@ void CPlayerWeapon::CreateBullet(_uint iModelIdx)
     _vector     vWorldFar = CalWorldEndPos();
     _vector     vSrcPos = m_pTransformCom->GetTransformState(CTransform::STATE_POS);
     _vector     vBulletDir = XMVector3Normalize(vWorldFar - vSrcPos);
-    _float      fCX = (_float)g_iWinSizeX / 2.f, g_iWinSizeX;
-    _float      fCY = (_float)g_iWinSizeY / 2.f, g_iWinSizeY;
+    _float      fCX = (_float)(g_iWinSizeX / 2.f), g_iWinSizeX;
+    _float      fCY = (_float)(g_iWinSizeY / 2.f), g_iWinSizeY;
 
     CProjectile::PROJECTILE_DESC Desc = {};
     Desc.bUseSpawnPos = true;

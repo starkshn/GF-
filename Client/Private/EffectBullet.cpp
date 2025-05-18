@@ -41,7 +41,6 @@ void CEffectBullet::Update(_float fTimeDelta)
 
     if (m_bMove)
     {
-        // m_pTransformCom->GoFoward(fTimeDelta);
         _vector vPos = m_pTransformCom->GetTransformState(CTransform::STATE_POS);
         vPos = vPos + m_vMoveDir * m_pTransformCom->GetSpeed() * fTimeDelta;
         m_pTransformCom->SetTransformState(CTransform::STATE_POS, vPos);

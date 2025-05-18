@@ -51,11 +51,8 @@ public:
 
 	HRESULT					CreateMonsterHPBar(CGameObject* pOwner, _int iLevelIdx, _int iMaxHP);
 
-#ifdef _DEBUG
 private:
 	HRESULT					ReadyComponents();
-#endif
-	// HRESULT					ReadySpawnMonster();
 
 private:
 	CCollider*				m_pColliderCom = nullptr;

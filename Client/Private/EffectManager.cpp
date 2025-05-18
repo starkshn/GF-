@@ -1530,6 +1530,7 @@ void CEffectManager::DeActiveEffect(EFFECT_TYPE eType)
     }
 }
 
+// pCom은 Effect 객체의 Transform, Hit은 언리얼 엔진의 HIT 구조체를 모방하였습니다.
 void CEffectManager::CalNormal(CTransform* pCom, HIT_RESULT Hit)
 {
     pCom->SetTransformState(CTransform::STATE_POS, XMVectorSet(Hit.vHitPos.x, Hit.vHitPos.y, Hit.vHitPos.z, 1.f));
@@ -1541,8 +1542,8 @@ void CEffectManager::CalNormal(CTransform* pCom, HIT_RESULT Hit)
     {
         // vLook이 Y축 방향이면, vRight를 X축 방향 벡터로 설정
         _vector vRight = XMVectorSet(1.f, 0.f, 0.f, 0.f); // 기본 X축 방향
-        _vector vUp = XMVector3Normalize(XMVector3Cross(vRight, vLook)); // vUp은 vRight와 vLook의 외적
-        vRight = XMVector3Normalize(XMVector3Cross(vLook, vUp)); // vRight를 재정의하여 직교 관계 유지
+        _vector vUp = XMVector3Normalize(XMVector3Cross(vRight, vLook));    // vUp은 vRight와 vLook의 외적
+        vRight = XMVector3Normalize(XMVector3Cross(vLook, vUp));            // vRight를 재정의하여 직교 관계 유지
 
         pCom->SetTransformState(CTransform::STATE_RIGHT, vRight);
         pCom->SetTransformState(CTransform::STATE_UP, vUp);

@@ -627,12 +627,14 @@ void CGameInstance::SetUpShadowTransformMatrix(CShadow::D3D_TRANSFORM_STATE eSta
 	m_pShadow->SetUpTransformMatrix(eState, TransformMatrix);
 }
 
+#ifdef _DEBUG
 HRESULT CGameInstance::AddDebugComponent(CComponent* pDebugCom)
 {
 	if (nullptr == m_pRenderer)
 		return E_FAIL;
 	return m_pRenderer->AddDebugComponent(pDebugCom);
 }
+#endif
 
 HRESULT CGameInstance::AddPanelUIToManager(string strName, CUIPanel* pUI)
 {

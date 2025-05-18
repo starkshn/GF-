@@ -211,6 +211,7 @@ void CBoss::UpdateBossRockWorldMatrix(_float fTimeDelta)
     XMStoreFloat4(&vLook, BossHandMatrix.r[2]);
     XMStoreFloat4(&vHandPos, BossHandMatrix.r[3]);
 
+    // 소켓에 해당하는 Hand의 월드 행렬을 가져온다.
     CTransform* pBossRockTransform = static_cast<CTransform*>(m_pBossRock->GetComponent(TEXT("Com_Transform")));
     pBossRockTransform->SetTransformState(CTransform::STATE_RIGHT, XMLoadFloat4(&vRight));
     pBossRockTransform->SetTransformState(CTransform::STATE_UP, XMLoadFloat4(&vUp));
@@ -227,10 +228,10 @@ void CBoss::UpdateBossRockWorldMatrix(_float fTimeDelta)
 
         _vector vPos = XMLoadFloat4(&vHandPos);
         _vector vHandUp = XMLoadFloat4(&vUp);
-        // vPos = vPos + -vHandUp * 3.f;
-        CParticleManager::GetInstance()->UpdateParticlePos(CParticleManager::BOSS_ROCK, vPos);
+        
+        // 파티클의 위치를 업데이트 한다.
+        CParticleManager::GetInstance()->UpdateParticlePos(CParticleManager::BOSS_ROCK, vPos);          
         CParticleManager::GetInstance()->UpdateParticlePos(CParticleManager::BOSS_ROCK_DUST, vPos);
-
     }
 }
 
@@ -406,6 +407,8 @@ void CBoss::StartJump()
     FindAlertPos();
 
     _float fDist = XMVectorGetX(XMVector4Length(m_vAlertPos - vSrc));
+
+    // 플레이어까지의 거리에 따른 속도를 구한다.
     _float fSP = fDist / m_fMaxAttack01MoveTime;
     m_fAttackMoveSP = fSP;
 }

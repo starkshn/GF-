@@ -306,7 +306,7 @@ HRESULT CPlayerBody::LoadPlayerAnimations()
                 {
                     {
                         CAnimation* pAnim = m_pModelComs[2]->GetAnimation(1);
-                        pAnim->InsertAlertPointSound("RELOAD", 0.35);
+                        pAnim->InsertAlertPointSound("RELOAD", 0.35f);
                     }
                 }
 
@@ -347,7 +347,7 @@ HRESULT CPlayerBody::LoadPlayerAnimations()
                 m_ModelsAnimationNames[i].insert({ "RELOAD", 6 });
                 {
                     CAnimation* pAnim = m_pModelComs[3]->GetAnimation(6);
-                    pAnim->InsertAlertPointSound("RELOAD_START", 0.15);
+                    pAnim->InsertAlertPointSound("RELOAD_START", 0.15f);
                     pAnim->InsertAlertPointSound("RELOAD_DO", 0.5f);
                     pAnim->InsertAlertPointSound("RELOAD_END", 1.3f);
                 }

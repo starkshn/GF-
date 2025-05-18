@@ -399,30 +399,6 @@ HRESULT CModel::LoadAnimFile(LOADANIMTYPE eType, string strModelNameFrom)
         }
     }
 
-    /*if (strModelNameFrom == "1201_Right")
-    {
-        vector<CChannel*>& vecReloadChannels = m_Animations[2]->GetChannelVector();
-        vector<_uint>& vecKeyframeIndices = m_Animations[2]->GetKeyframeIndices();
-
-        for (_uint iKeyFrameIndex : vecKeyframeIndices)
-        {
-            m_Animations.back()->AddKeyFrameIndices(iKeyFrameIndex);
-        }
-        
-        for (auto& CH : vecReloadChannels)
-        {
-            Channels.push_back(CH);
-
-            vector<KEYFRAME>& vecReloadAnimKeyfraems = CH->GetKeyFrameVector();
-            for (KEYFRAME Keyframe : vecReloadAnimKeyfraems)
-            {
-                Channels.back()->AddKeyFrame(Keyframe);
-            }
-        }
-
-        
-    }*/
-
     return S_OK;
 }
 

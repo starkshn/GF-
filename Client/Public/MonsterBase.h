@@ -87,8 +87,8 @@ protected:
 protected:
 
 protected:
-	virtual _bool			UpdateStateCloseRangeAttackMonster(_float fTimeDelta);
-	virtual _bool			UpdateStateFarRangeAttackMonster(_float fTimeDelta);
+	virtual _bool			UpdateStateCloseRangeAttackMonster(_float fTimeDelta); // 근거리 몬스터가 사용하는 패턴 함수
+	virtual _bool			UpdateStateFarRangeAttackMonster(_float fTimeDelta);	// 원거리 몬스터가 사용하는 패턴 함수
 
 protected:
 	_bool					SearchPlayer();

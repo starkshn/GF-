@@ -17,6 +17,9 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 
+#include <tinyxml2.h>
+#pragma comment(lib, "tinyxml2.lib")
+
 namespace Tool
 {
 	const unsigned int			g_iWinSizeX = { 1280};

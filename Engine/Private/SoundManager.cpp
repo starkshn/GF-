@@ -10,6 +10,7 @@ CSoundManager::CSoundManager() : m_iUpdate(0)
 
 HRESULT CSoundManager::Ready_SoundMgr()
 {
+#ifdef _CLIENT
 	// 사운드를 담당하는 대표객체를 생성하는 함수
 	FMOD_System_Create(&m_pSystem);
 
@@ -24,6 +25,7 @@ HRESULT CSoundManager::Ready_SoundMgr()
 		return E_FAIL;
 	}
 	m_eID = SOUND_EFFECT0;
+#endif
 
 	return S_OK;
 }

@@ -48,10 +48,10 @@ void CUIBG::PriorityUpdate(_float fTimeDelta)
 
 void CUIBG::Update(_float fTimeDelta)
 {
+	// 원근 투영타입인경우, 내적하여 값이 양수라면 렌더링 하고 그렇지 않으면 렌더링 하지 않는다.
 	if (m_eShowType == UI_SHOW_TYPE::UI_PERSPECTIVE)
 	{
 		UpdatePerspectiveMatrix();
-
 
 		_vector OwnerPos = static_cast<CTransform*>(m_pUIOwner->GetComponent(TEXT("Com_Transform")))->GetTransformState(CTransform::STATE_POS);
 
@@ -61,12 +61,8 @@ void CUIBG::Update(_float fTimeDelta)
 		CTransform* pCom = static_cast<CTransform*>(pPlayer->GetComponent(TEXT("Com_Transform")));
 		_vector vPlayerPos = pCom->GetTransformState(CTransform::STATE_POS);
 		_vector vPlayerLook = XMVector3Normalize(pCom->GetTransformState(CTransform::STATE_LOOK));
-		// vPlayerLook = XMVectorSetY(vPlayerLook, 0.f);
-
 
 		_vector vMonsterToPlayerDir = -XMVector3Normalize(vPlayerPos - OwnerPos);
-		// vMontoPlayerDir.m128_f32[1] = 0.f;
-
 		_float fDot = XMVectorGetX(XMVector3Dot(vPlayerLook, vMonsterToPlayerDir));
 
 		if (fDot >= 0.f)

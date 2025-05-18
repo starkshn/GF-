@@ -1,4 +1,5 @@
 #pragma once
+#include "Client_Defines.h"
 #include "MonsterBase.h"
 #include "Meteor.h"
 

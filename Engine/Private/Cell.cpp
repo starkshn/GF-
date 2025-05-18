@@ -155,7 +155,7 @@ _float CCell::ComputeCellHeight(_fvector vPosition)
 	// 평면의 방정식 : ax + by + cz + d = 0
 
 	// 높이를 구해야하기 때문에
-	// y = (-ax - cz - d) / d 를 하면 y값을 알 수 있다.
+	// y = (-ax - cz - b) / d 를 하면 y값을 알 수 있다.
 
 	// XMPlaneFromPointNormal : 평면에 해당하는 세점과 평면에 수직인 벡터를 넘겨주면 a b c d를 구해준다.
 	// XMPlaneFromPoints : 평면에 해당하는 세점을 넘겨주면 평면에 방정식에 해당하는 계수 a b c d 를 반환한다.
@@ -173,6 +173,7 @@ _float CCell::ComputeCellHeight(_fvector vPosition)
 	return (-XMVectorGetX(vPlane) * XMVectorGetX(vPosition) - XMVectorGetZ(vPlane) * XMVectorGetZ(vPosition) - XMVectorGetW(vPlane)) / XMVectorGetY(vPlane);
 }
 
+#ifdef _DEBUG
 HRESULT CCell::Render()
 {
 	m_pVIBuffer->BindBufferDesc();
@@ -180,6 +181,7 @@ HRESULT CCell::Render()
 
 	return S_OK;
 }
+#endif
 
 CCell* CCell::Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, const _float3* pPoints, _int iIndex)
 {

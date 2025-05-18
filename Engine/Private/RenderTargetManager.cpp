@@ -111,6 +111,7 @@ HRESULT CRenderTargetManager::CopyRTResource(const _wstring& strTargetTag, ID3D1
     return pRT->CopyResource(pDst);
 }
 
+#ifdef _DEBUG
 HRESULT CRenderTargetManager::ReadyRTVDebug(const _wstring& strTargetTags, _float fScreenX, _float fScreenY, _float fSizeX, _float fSizeY)
 {
     CRenderTarget* pRT = FindRenderTarget(strTargetTags);
@@ -131,6 +132,7 @@ HRESULT CRenderTargetManager::RenderRTVDebug(const _wstring& strMRTTag, CShader*
 
     return S_OK;
 }
+#endif
 
 CRenderTarget* CRenderTargetManager::FindRenderTarget(const _wstring& strTargetTag)
 {

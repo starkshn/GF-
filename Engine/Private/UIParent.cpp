@@ -242,6 +242,7 @@ _vector CUIParent::CalScreenPosFromWorldPos(_fvector vWorldPos)
 	_float fW = XMVectorGetW(vClipSpace);
 
 	// Z나누기 수행
+	// Z나누기를 수행하기 전까지는 ClipSpace이며 수행하고 나면 NDC좌표가 된다.
 	vClipSpace = XMVectorSetX(vClipSpace, XMVectorGetX(vClipSpace) / fW);
 	vClipSpace = XMVectorSetY(vClipSpace, XMVectorGetY(vClipSpace) / fW);
 

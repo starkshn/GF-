@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Client_Defines.h"
 #include "StateObjectBody.h"
 #include "Model.h"
 

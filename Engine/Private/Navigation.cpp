@@ -16,11 +16,13 @@ CNavigation::CNavigation(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 CNavigation::CNavigation(const CNavigation& Prototype)
     :
     CComponent(Prototype),
-    m_Cells(Prototype.m_Cells),
+    m_Cells(Prototype.m_Cells)
 #ifdef _DEBUG
+    ,
     m_pShader(Prototype.m_pShader)
 #endif
 {
+
 #ifdef _DEBUG
     SafeAddRef(m_pShader);
 #endif
@@ -111,6 +113,8 @@ _bool CNavigation::IsInCell(_fvector vWorldPos, _fvector vDstworldDir, _float3& 
     // 모든 셀들을 월드로 보내는 작업보다 특정 월드 좌표를 지형의 로컬로 보내서 셀안인지 아닌지를 판단하는게 연산이 더 적기 때문에 매개변수 vWorldPos를 로컬로 변환 시켜 계산해준다.
     // - 현재 m_WorldMatrix는 항등 행렬이다.
     _vector vCheckLocalPos = XMVector3TransformCoord(vWorldPos, XMMatrixInverse(nullptr, XMLoadFloat4x4(&m_WorldMatrix)));
+
+    // vLocalDstDir는 현재 플레이어의 이동방향 벡터이다.
     _vector vLocalDstDir = XMVector3TransformNormal(vDstworldDir, XMMatrixInverse(nullptr, XMLoadFloat4x4(&m_WorldMatrix)));
     vLocalDstDir = XMVector3Normalize(vLocalDstDir);
 
@@ -126,12 +130,11 @@ _bool CNavigation::IsInCell(_fvector vWorldPos, _fvector vDstworldDir, _float3& 
         _vector vCurrentCellNormal = XMLoadFloat3(&vCellNormal);
         vCurrentCellNormal = XMVector3Normalize(vCurrentCellNormal);
 
-        _float  fRad = (XMVectorGetX(XMVector3Dot(vLocalDstDir, vCurrentCellNormal)));         // Look벡터와 삼각형 라인의 법선 벡터와 내적한 결과값
-        _vector vCellNormalVector = vCurrentCellNormal * fRad;                                                   // vLookDir에 수선의 발을 내린 벡터
-        if (fRad < 0.f)
-            vCellNormalVector = -vCellNormalVector;
+        _float  fRad = (XMVectorGetX(XMVector3Dot(vLocalDstDir, vCurrentCellNormal)));      // Look벡터와 삼각형 라인의 법선 벡터와 내적한 결과값
+        _vector vCellNormalVector = vCurrentCellNormal * fRad;                              // vLookDir에 수선의 발을 내린 벡터
 
-        _vector vSlide = XMVector3Normalize(vLocalDstDir - vCellNormalVector);                  // 슬라이딩 벡터
+        // '플레이어 이동방향 벡터' - '삼각형 한 면의 수직인 정사영된 법선벡터' = '슬라이딩 벡터'가 나온다.
+        _vector vSlide = XMVector3Normalize(vLocalDstDir - vCellNormalVector);              // 슬라이딩 벡터
 
         // 로컬 상의 슬라이딩 벡터를 월드로 변경한다.
         XMVector3TransformNormal(vSlide, XMLoadFloat4x4(&m_WorldMatrix));
@@ -149,12 +152,6 @@ _bool CNavigation::IsInCell(_fvector vWorldPos, _fvector vDstworldDir, _float3& 
         {
             // 아래처럼 처리를 해버리게 되면 현재 틱에 정확한 이웃을 찾을 수 없다(다음 틱에 찾을 순 있긴 하다)
             // 하지만 셀이 촘촘하고 플레이어의 이동속도가 큰 경우 다음틱에 셀을 도 빠져나갔다면 이웃한 셀을 영구적으로 찾을 수 없는 문제가 발생한다.
-            // if (-1 == iNeighborCellIndex)
-            // {
-            //     m_iCurrentCellIndex = iNeighborCellIndex;
-            //     return true;
-            // }
-
             while (true)
             {
                 if (-1 == iNeighborCellIndex)

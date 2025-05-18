@@ -16,18 +16,16 @@ CVIBufferParticlePoint::CVIBufferParticlePoint(const CVIBufferParticlePoint& Pro
 
 HRESULT CVIBufferParticlePoint::InitializePrototype(const PARTICLE_DESC& ParticleDesc)
 {
-    m_iNumVertexBuffers = 2;
+    m_iNumVertexBuffers = 2;                                // 정점 버퍼의 개수는 2개로 설정한다.
     m_iNumInstances = ParticleDesc.iNumInstances;
-
     m_iVertexStride = sizeof(VTX_POINT);
     m_iNumVertices = 1;
-
     m_iIndexStride = sizeof(_ushort);
     m_iNumIndices = m_iNumInstances;
     m_eIndexFormat = DXGI_FORMAT_R16_UINT;
     m_ePrimitiveTopology = D3D_PRIMITIVE_TOPOLOGY_POINTLIST;
 
-#pragma region VERTEX_BUFFER
+#pragma region VERTEX_BUFFER 생성
 
     ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
     
@@ -52,13 +50,10 @@ HRESULT CVIBufferParticlePoint::InitializePrototype(const PARTICLE_DESC& Particl
 
     SafeDeleteArray(pVertices);
 
-
 #pragma endregion
 
-
-#pragma region INDEX_BUFFER
+#pragma region INDEX_BUFFER 생성
     ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
-
     m_BufferDesc.ByteWidth = m_iIndexStride * m_iNumIndices;
     m_BufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
     m_BufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -79,10 +74,9 @@ HRESULT CVIBufferParticlePoint::InitializePrototype(const PARTICLE_DESC& Particl
 
 #pragma endregion
 
-#pragma region INSTANCE_BUFFER
+#pragma region INSTANCE_BUFFER 생성
     m_iInstanceStride = sizeof(VTX_INSTANCE);
     m_iNumIndexPerInstance = 6;
-
     ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
 
     m_InstanceBufferDesc.ByteWidth = m_iInstanceStride * m_iNumInstances;
@@ -131,7 +125,6 @@ HRESULT CVIBufferParticlePoint::InitializePrototype(const PARTICLE_DESC& Particl
     ZeroMemory(&m_InstanceInitialDesc, sizeof m_InstanceInitialDesc);
     m_InstanceInitialDesc.pSysMem = m_pInstanceVertices;
     
-
 #pragma endregion
 
     return S_OK;

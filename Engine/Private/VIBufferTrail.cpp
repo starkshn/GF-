@@ -20,38 +20,38 @@ HRESULT CVIBufferTrail::InitializePrototype()
 
 HRESULT CVIBufferTrail::Initialize(void* pArg)
 {
+	// pArg로 받은 TRAIL_DESC 구조체를 pDesc로 캐스팅하여 사용
 	TRAIL_DESC* pDesc = static_cast<TRAIL_DESC*>(pArg);
-	m_fTrailLength = pDesc->fTrailLength;
-	m_iNumMaxVertices = pDesc->iNumMaxVertices;
-	m_fOffset = pDesc->fOffset;
-	m_fLifeTime = pDesc->fLifeTime;
+
+	m_fTrailLength = pDesc->fTrailLength; // 트레일 전체 길이
+	m_iNumMaxVertices = pDesc->iNumMaxVertices; // 트래일 버퍼의 최대 정점 개수
+	m_fOffset = pDesc->fOffset; // 정점간 간격(위 아래로의 간격을 의미합니다.
+	m_fLifeTime = pDesc->fLifeTime; // 트레일 버퍼의 정점 지속 시간
 	
 	if (0.f == pDesc->vLocalHigh.x && 0.f == pDesc->vLocalHigh.y && 0.f == pDesc->vLocalHigh.z)
 		m_vLocalTrailHigh = m_vLocalTrailHigh;
-	else
-	{
-
-	}
 
 	if (0.f == pDesc->vLocalLow.x && 0.f == pDesc->vLocalLow.y && 0.f == pDesc->vLocalLow.z)
 		m_vLocalTrailLow = m_vLocalTrailLow;
-	else
-	{
-
-	}
-	
-
 
 	m_iNumVertexBuffers = 1;
 	m_iVertexStride = sizeof(VTX_POSTEX_TIME);
 	m_iNumVertices = m_iNumMaxVertices;
 	m_iIndexStride = sizeof(_ushort);
+
+	// m_iNumIndices는 인덱스 개수를 의미한다.
+	// (m_iNumVertices / 2 - 1) : 한 줄에 있는 사각형 개수
+	// * 2 : 각 사각형은 두개의 삼각형으로 구성되기 때문에 곱하기 2
+	// * 3 : 삼각형 하나당 3개의 인덱스가 필요하기 때문에 곱하기 3
+	// 
+	// ex) 최대 정점의 개수가 10개인 경우 3 * 2 * (10 / 2 - 1) => 24 
+	// . . . . . 
+	// . . . . .
 	m_iNumIndices = 3 * 2 * (m_iNumVertices / 2 - 1);
 	m_eIndexFormat = DXGI_FORMAT_R16_UINT;
 	m_ePrimitiveTopology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
-#pragma region VERTEX_BUFFER
-
+#pragma region "VERTEX_BUFFER 생성"
 	ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
 
 	/* 정점버퍼를 몇 바이트 할당할까요? */
@@ -68,12 +68,9 @@ HRESULT CVIBufferTrail::Initialize(void* pArg)
 	m_SubResourceDesc.pSysMem = pVertices;
 	if (FAILED(__super::CreateBuffer(&(this->m_pVB))))
 		return E_FAIL;
-
 #pragma endregion
 
-
-#pragma region INDEX_BUFFER
-
+#pragma region "INDEX_BUFFER 생성"
 	ZeroMemory(&m_BufferDesc, sizeof m_BufferDesc);
 	m_BufferDesc.ByteWidth = m_iIndexStride * m_iNumIndices;
 	m_BufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
@@ -86,16 +83,20 @@ HRESULT CVIBufferTrail::Initialize(void* pArg)
 	ZeroMemory(pIndices, sizeof(_ushort) * m_iNumIndices);
 
 	_uint iNowVertexIndex = 0;
+
+	// 삼각형 개수 계산
 	_uint iNumTriCnt = m_iNumIndices / 3;
+
+	// 4개의 정점마다 두개의 삼각형을 만들어 사각형을 생성한다.
 	for (_uint i = 0; i < iNumTriCnt; i += 2)
 	{
-		pIndices[iNowVertexIndex++] = i;
-		pIndices[iNowVertexIndex++] = i + 2;
-		pIndices[iNowVertexIndex++] = i + 3;
+		pIndices[iNowVertexIndex++] = i;		// 현재 프레임 윗 부분
+		pIndices[iNowVertexIndex++] = i + 2;	// 이전 프레임 윗 부분
+		pIndices[iNowVertexIndex++] = i + 3;	// 이전 프레임 아랫부분
 
-		pIndices[iNowVertexIndex++] = i;
-		pIndices[iNowVertexIndex++] = i + 3;
-		pIndices[iNowVertexIndex++] = i + 1;
+		pIndices[iNowVertexIndex++] = i;		// 현재 프레임 윗 부분
+		pIndices[iNowVertexIndex++] = i + 3;	// 이전 프레임 아랫 부분
+		pIndices[iNowVertexIndex++] = i + 1;	// 현재 프레임 아랫 부분
 	}
 
 	ZeroMemory(&m_SubResourceDesc, sizeof(D3D11_SUBRESOURCE_DATA));
@@ -103,19 +104,17 @@ HRESULT CVIBufferTrail::Initialize(void* pArg)
 
 	if (FAILED(__super::CreateBuffer(&(this->m_pIB))))
 		return E_FAIL;
-
 #pragma endregion
 
 	SafeDeleteArray(pVertices);
 	SafeDeleteArray(pIndices);
 
 	m_TrailVertices.resize(m_iNumMaxVertices);
-
 	return S_OK;
 }
 
 
-// 정점을 월드 상에 생성하는 함수이다.
+// 정점을 월드 상에 생성하는 함수.
 void CVIBufferTrail::AddVertices(_fmatrix WorldMatrix, _float fTimeDelta)
 {
 	// m_TrailVertices 사이즈 + 2가 더 크면 2개 빼낸다.

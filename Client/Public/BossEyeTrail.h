@@ -2,7 +2,6 @@
 #include "Client_Defines.h"
 #include "EffectTrail.h"
 
-
 BEGIN(Client)
 
 class CBossEyeTrail final : public CEffectTrail

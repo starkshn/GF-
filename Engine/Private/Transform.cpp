@@ -57,12 +57,14 @@ void CTransform::Scaling(_float fX, _float fY, _float fZ)
 	SetTransformState(STATE_LOOK, XMVector3Normalize(GetTransformState(STATE_LOOK)) * fZ);		
 }
 
+// 3D오브젝트가 앞으로 나아가는 코드
 void CTransform::GoFoward(_float fTimeDelta, CNavigation* pNav)
 {
-	_vector		vPos = GetTransformState(STATE_POS);
-	_vector		vLook = GetTransformState(STATE_LOOK);
-	vLook = XMVector3Normalize(vLook);
+	_vector		vPos = GetTransformState(STATE_POS);			// 현재 월드 상의 위치
+	_vector		vLook = GetTransformState(STATE_LOOK);			// 플레이어 Look Vector
+	vLook = XMVector3Normalize(vLook);							
 
+	// NavMesh가 없는 경우
 	if (nullptr == pNav)
 	{
 		vPos += vLook * m_fSPPerSec * fTimeDelta;
@@ -121,10 +123,10 @@ void CTransform::GoRight(_float fTimeDelta, CNavigation* pNav)
 
 void CTransform::GoRightFoward(_float fTimeDelta, CNavigation* pNav)
 {
-	_vector vPos = GetTransformState(STATE_POS);
-	_vector vRight = GetTransformState(STATE_RIGHT);
-	_vector vLook = GetTransformState(STATE_LOOK);
-	_vector vDir = XMVector3Normalize(vRight + vLook);
+	_vector vPos = GetTransformState(STATE_POS);		
+	_vector vRight = GetTransformState(STATE_RIGHT);	
+	_vector vLook = GetTransformState(STATE_LOOK);		
+	_vector vDir = XMVector3Normalize(vRight + vLook);	
 
 	if (nullptr == pNav)
 	{
@@ -183,28 +185,30 @@ void CTransform::GoLeftBack(_float fTimeDelta, CNavigation* pNav)
 		FindPositionOnNavigation(vDir, pNav, fTimeDelta);
 }
 
+// NavMesh상에서 이동이 가능한지 아닌지 여부를 판별하고, 이동가능하다면 vDir방향으로 그대로 이동시키고
+// 이동이 불가능하다면 이웃한 Cell(삼각형)을 찾고 Cell이 없다면 삼각형 한 면에 평행한 방향 벡터(슬라이딩 벡터)로 이동시킨다.
 void CTransform::FindPositionOnNavigation(_fvector vDir, CNavigation* pNav, _float fTimeDelta)
 {
 	_vector		vPos = GetTransformState(STATE_POS);
 	_vector		vCurDstDir = XMVector3Normalize(vDir);
 
+	// 먼저 이동시키지 않고 vNextTickPos 라는 것을 통해 다음 틱 이동 위치를 미리 계산하여 이 값으로 Cell을 찾는다.
 	_vector		vNextTickPos = vPos + vCurDstDir * m_fSPPerSec * fTimeDelta;
 	_float3		vSlidingDir = { 0.f, 0.f, 0.f };
 
-	// vNextTickPos가 셀 안에 있거나 이웃이 있는경우 그대로 이동한다.
+	// vNextTickPos 가 여진히 Cell안에 있는 경우 그대로 이동 시켜준다.
 	if (pNav->IsInCell(vNextTickPos, vCurDstDir, vSlidingDir))
-	{
 		SetTransformState(STATE_POS, vNextTickPos);
-	}
-	// vNextTickPos가 셀 밖에 있는거나, == 이웃이 없다.
+	// vNextTickPos 가 Cell 밖에 있는 경우 & vNextTickPos의 위치에 Cell이 없는 경우
 	else
 	{
-		// 슬라이딩 방향으로 갈 다음 틱 위치
+		// 슬라이딩 벡터 방향으로 갈 다음 틱 위치를 계산한다.
 		vNextTickPos = vPos + XMVector3Normalize(XMLoadFloat3(&vSlidingDir)) * m_fSPPerSec * fTimeDelta;
 
+		// 슬라이딩 벡터 방향으로 이동했는데 셀안에 있는 경우
 		if (pNav->IsInCell(vNextTickPos))
 			SetTransformState(STATE_POS, vNextTickPos);
-		// 슬라이딩 벡터로 나갈 방향의 다음 위치에 셀이 없거나 이웃이 없는 경우
+		// 슬라이딩 벡터 방향으로 이동했는데 셀안에 없는 경우
 		else
 		{
 			_float3 vResultDir = { 0.f, 0.f, 0.f };
@@ -213,15 +217,7 @@ void CTransform::FindPositionOnNavigation(_fvector vDir, CNavigation* pNav, _flo
 				vNextTickPos = vPos + XMVector3Normalize(XMLoadFloat3(&vResultDir)) * m_fSPPerSec * fTimeDelta;
 
 				if (pNav->IsInCell(vNextTickPos))
-				{
-					// cout << "새로운 슬라이딩 벡터 방향으로 이동 가능" << endl;
-					// cout << "셀 인덱스 변경" << endl;
 					SetTransformState(STATE_POS, vNextTickPos);
-				}
-			}
-			else
-			{
-
 			}
 		}
 	}

@@ -55,7 +55,8 @@ void CInterMove::PriorityUpdate(_float fTimeDelta)
 
 void CInterMove::Update(_float fTimeDelta)
 {
-    m_pColliderCom->Update(m_pTransformCom->GetWorldMatrix());
+    if (m_pColliderCom)
+        m_pColliderCom->Update(m_pTransformCom->GetWorldMatrix());
 }
 
 // 

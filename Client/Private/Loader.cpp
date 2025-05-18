@@ -1001,6 +1001,7 @@ HRESULT CLoader::LoadLevelGlobalParticles()
     }
 
     // ParticleBossRockDust
+    // 보스 몬스터의 메테오 모을 때 생기는 파티클
     {
         CVIBufferParticleInstance::PARTICLE_DESC ParticleBossRockDesc = {};
 
@@ -1022,7 +1023,6 @@ HRESULT CLoader::LoadLevelGlobalParticles()
         if (FAILED(m_pGameInst->AddPrototype(LEVEL_GLOBAL, TEXT("Prototype_GameObject_Particle_BossRockDust"), CParticleBossRockDust::Create(m_pDevice, m_pContext))))
             return E_FAIL;
     }
-
 
     // ParticleBossRockCol
     {
@@ -1069,7 +1069,6 @@ HRESULT CLoader::LoadLevelGlobalParticles()
         if (FAILED(m_pGameInst->AddPrototype(LEVEL_GLOBAL, TEXT("Prototype_GameObject_Particle_BossRockColDust"), CParticleBossRockColDust::Create(m_pDevice, m_pContext))))
             return E_FAIL;
     }
-
 
 
     // ParticleBossRockColDustLighting

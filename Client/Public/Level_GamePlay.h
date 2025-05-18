@@ -38,6 +38,7 @@ private:
 	HRESULT					ReadyLayerFromGlobalMonsters(const _wstring& strLayerTag);
 	HRESULT					ReadyLayerSpawnTriggersFromGlobal(const _wstring& strLayerTag);
 	HRESULT					ReadyLayerProjectilesFromGlobal(const _wstring& strLayerTag);
+
 	HRESULT					ReadyLayerParticlesFromGlobal(const _wstring& strLayerTag);
 	HRESULT					ReadyLayerParticleWallHitFromGlobal(const _wstring& strLayerTag);
 	HRESULT					ReadyLayerParticleMonsterSpawnFromGlobal(const _wstring& strLayerTag);
@@ -111,7 +112,7 @@ private:
 	HRESULT					ReadyTestPanel(const _wstring& strLayerTag);
 	HRESULT					ReadyPlayerInfoUI();
 	HRESULT					ReadyPlayerGunUI();
-	HRESULT					ReadyMiniMap();
+	HRESULT					ReadyMiniMap();									// ¹Ì´Ï¸Ê
 	HRESULT					ReadyPlayerSkillEffectUI();
 	HRESULT					ReadyPlayerKeyUI();
 	HRESULT					ReadyDamageUIFont();
@@ -122,16 +123,19 @@ private:
 
 	HRESULT					ReadyTestS();
 
-#ifdef _DEBUG
 
 
 public:
 	void					GoBossLevel();
 
+#ifdef _DEBUG
+
 private:
 
 	void					InitializeImgui();
 	void					RenderImgui();
+
+#endif
 
 public:
 	_bool					IsGoToBossLevel() { return m_bMoveBossLevel; }
@@ -144,19 +148,12 @@ public:
 	_bool					m_bCameraAttach = false;
 
 	CCamera_Free*			m_pCurCamera = nullptr;
-
-
 	_bool					m_bMoveBossLevel = false;
-
-
-#endif
 
 private:
 	HRESULT					LoadAABB();
 	void					ReadAABB(string strFilePath);
 	HRESULT					LoadSpawnTriggers();
-
-	// void					ReadSpawnTriggers(string strFilePath, _int iNavMeshIdx, string strSpawnTriggerName, _int iDir = -1);
 	void					ReadSpawnTriggers(string strFilePath, string strspawnTriggerTag, _int iNavMeshIdx, _int iDir = -1);
 	HRESULT					LoadInterMove();
 	void					ReadInterMoves(string strFilePath, _int iIdx);

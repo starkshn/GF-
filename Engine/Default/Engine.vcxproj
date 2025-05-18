@@ -80,6 +80,7 @@
     <ClInclude Include="..\Public\Texture.h" />
     <ClInclude Include="..\Public\Timer.h" />
     <ClInclude Include="..\Public\Timer_Manager.h" />
+    <ClInclude Include="..\Public\tinyxml2\tinyxml2.h" />
     <ClInclude Include="..\Public\Transform.h" />
     <ClInclude Include="..\Public\UIElement.h" />
     <ClInclude Include="..\Public\UIManager.h" />
@@ -150,6 +151,7 @@
     <ClCompile Include="..\Private\Texture.cpp" />
     <ClCompile Include="..\Private\Timer.cpp" />
     <ClCompile Include="..\Private\Timer_Manager.cpp" />
+    <ClCompile Include="..\Private\tinyxml2.cpp" />
     <ClCompile Include="..\Private\Transform.cpp" />
     <ClCompile Include="..\Private\UIElement.cpp" />
     <ClCompile Include="..\Private\UIManager.cpp" />
@@ -306,7 +308,8 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>../Public\;../Public\Effects11\;../Public\DirectXTK\;../Public\Sounds\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Public\;../Public\Effects11\;../Public\DirectXTK\;../Public\Sounds\;../Public\tinyxml2\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

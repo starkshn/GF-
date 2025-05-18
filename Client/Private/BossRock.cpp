@@ -127,8 +127,12 @@ HRESULT CBossRock::Render()
 			m_pModelCom->Render(i);
 		}
 
+#ifdef _DEBUG
+
 		m_pColliderCom->Render();
 		m_pColliderRange->Render();
+
+#endif
 	}
 
 	return S_OK;

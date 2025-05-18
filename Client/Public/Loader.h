@@ -1,8 +1,6 @@
 #pragma once
-
 #include "Client_Defines.h"
 #include "Base.h"
-
 
 // 서브 스레드를 생성한다.
 // 다음 레벨에 필요한 자원을 로드하는 역할

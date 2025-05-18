@@ -44,16 +44,6 @@ HRESULT CUITex::Initialize(void* pArg)
 		m_fAnimMaxTime = pDesc->fAnimMaxTime;
 	}
 
-	//if (pDesc->bUseScaling)
-	//{
-	//	m_bUseScaling = pDesc->bUseScaling;
-	//	m_fMaxScalingTime = pDesc->fMaxScalingTime;
-	//	m_fScalingMaxSize = pDesc->fScalingMaxSize;
-	//	m_fScalingMinSize = pDesc->fScalingMinSize;
-	//	m_fCurScale = m_fScalingMinSize;
-	//	m_fHalfTime = m_fMaxScalingTime * 0.5f;
-	//}
-
 	m_pTextureGunsCom.resize(4);
 
 	if (FAILED(__super::Initialize(pArg)))
@@ -83,7 +73,6 @@ void CUITex::Update(_float fTimeDelta)
 		}
 	}
 
-	
 	if (m_bStartAlphaEffect)
 	{
 		m_fAccAlphaTime += fTimeDelta;
@@ -139,9 +128,6 @@ void CUITex::Update(_float fTimeDelta)
 			m_pTransformCom->Scaling(fAcc, fAcc, 1.f);
 			_vector vRight = m_pTransformCom->GetTransformState(CTransform::STATE_RIGHT);
 			_vector vUP = m_pTransformCom->GetTransformState(CTransform::STATE_UP);
-
-			cout << vRight.m128_f32[0] << ' ' << vUP.m128_f32[1] << endl;
-			// cout << fAcc << endl;
 		}
 	}
 
@@ -158,7 +144,6 @@ void CUITex::LateUpdate(_float fTimeDelta)
 			return;
 	}
 
-
 	if (m_bRenderAvtive && !m_bUseAnimUI)
 		m_pGameInst->AddRenderObject(CRenderer::RG_UI, this);
 	else if (m_bUseAnimUI && m_bStartAnim)
@@ -169,7 +154,6 @@ HRESULT CUITex::Render()
 {
 	if (FAILED(BindShaderResources()))
 		return E_FAIL;
-
 
 	if (m_bUseAnimUI && m_bStartAnim)
 	{

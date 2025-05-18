@@ -102,9 +102,6 @@ HRESULT CLevel_Tool::Initialize()
 	if (FAILED(ReadyLayerParticles(TEXT("Layer_Particle"))))
 		return E_FAIL;
 
-	
-
-
 	m_pColFloor = dynamic_cast<CColFloor*>(m_pGameInstance->GetGameObjctInLayerBack(LEVEL_TOOL, LEVEL_TOOL, TEXT("Layer_ColFloor")));
 	m_pColFloorTransform = dynamic_cast<CTransform*>(m_pColFloor->GetComponent(TEXT("Com_Transform")));
 	m_pColFloorBoundingBox = dynamic_cast<CColBoundingBox*>(m_pColFloor->GetComponent(TEXT("Com_BoundingBox")));
@@ -1756,7 +1753,7 @@ void CLevel_Tool::DetachPlayerFromCamera()
 	m_bFollowCameraPos = false;
 }
 
-
+// 스크린 좌표롤 부터 Ray의 시작 위치와 끝 위치를 계산해주는 함수입니다.
 void CLevel_Tool::Cal_RayDirAndRayOriginPos(_int iScreenX, _int iScreenY, _vector& vRayDirection, _vector& vRayOriginPos)
 {
 	// 뷰, 투영(원근) 행렬을 얻어온다.
@@ -1771,7 +1768,6 @@ void CLevel_Tool::Cal_RayDirAndRayOriginPos(_int iScreenX, _int iScreenY, _vecto
 	_matrix     invV = XMMatrixInverse(nullptr, viewMatrix);
 	_matrix     invP = XMMatrixInverse(nullptr, projMatrix);
 
-	// _matrix     invVP = XMMatrixInverse(nullptr, XMMatrixMultiply(viewMatrix, projMatrix));
 	_matrix     invVP = invP * invV;
 
 	// NDC를 월드 공간으로 변환
@@ -2131,8 +2127,6 @@ void CLevel_Tool::PickCellLines()
 		{
 			FindClosetCellPos(vPickedPos);
 			m_vCurrentCellLineEndPos = XMLoadFloat4(&vPickedPos);
-
-
 			// LINE_AB의 시점 종점을 업데이트 한다.
 			m_CellLines[m_iCellClickCount - 1]->UpdateLine(m_CellPositions[m_iCellClickCount - 1], m_vCurrentCellLineEndPos);
 		}
@@ -2142,7 +2136,6 @@ void CLevel_Tool::PickCellLines()
 			FindClosetCellPos(vPickedPos);
 			// B점의 Start End 점을 설정해준다.
 			m_CellLines.back()->SetStartEndLinePos(m_CellPositions[m_iCellClickCount - 1], XMLoadFloat4(&vPickedPos));
-
 
 			// C점 생성
 			m_CellLines.push_back(CreateCellLine());
@@ -2155,15 +2148,11 @@ void CLevel_Tool::PickCellLines()
 			_float4 vPointCEndPos;
 			XMStoreFloat4(&vPointCEndPos, vCPointEndPos);
 			FindClosetCellPos(vPointCEndPos);
-
-
 			vCPointEndPos = XMLoadFloat4(&vPointCEndPos);
 
 			// C점의 끝점을 찾아서 연결한다.
 			m_CellLines.back()->SetStartEndLinePos(m_CellPositions.back(), vCPointEndPos);
-
 			m_vCurrentCellLineEndPos = vCPointEndPos;
-
 			++m_iCellClickCount;
 
 			// true라면 내가 제대로 찍었고
@@ -2176,10 +2165,8 @@ void CLevel_Tool::PickCellLines()
 			{
 				// 제대로 안찍어서 보정 되었다.
 			}
-
 		}
 	}
-
 
 	if (FIRST == (m_iCellClickCount % CL_END) || SECOND == (m_iCellClickCount % CL_END))
 	{
@@ -2192,7 +2179,8 @@ void CLevel_Tool::RenderCellLine()
 {
 	for (_int i = 0; i < m_CellLines.size(); ++i)
 	{
-		m_CellLines[i]->Render();
+		m_pGameInstance->AddRenderObject(CRenderer::RG_UI, m_CellLines[i]);
+		// m_CellLines[i]->Render();
 	}
 }
 
@@ -2233,13 +2221,20 @@ _bool CLevel_Tool::IsLeftHandedCross()
 	XMStoreFloat4(&vPB, vPointB);
 	XMStoreFloat4(&vPC, vPointC);
 
-	_vector vLineAB = vPointB - vPointA;
-	_vector vLineBC = vPointC - vPointB;
+	// (A) . 
+	//	   |\
+	// (B) .ㅡ. (C)
 
+	_vector vLineAB = vPointB - vPointA; // 점 B를 향하는 벡터
+	_vector vLineBC = vPointC - vPointB; // 점 C를 향하는 벡터
+
+	// 정규화를 수행한다.
 	vLineAB = XMVector3Normalize(vLineAB);
 	vLineBC = XMVector3Normalize(vLineBC);
 
 	// 두 벡터를 외적하여 나온 벡터의 Y성분을 가져온다. 이때 양수라면 왼손좌표계에 맞게 ABC를 찍은 것이고 그렇지 않다면 반시계 방향으로 찍은 것이다.
+	// 두 벡터의 외적은 두 벡터에 수직인 새로운 벡터를 생성, 외적의 방향은 오른손 법칙 또는 왼손 법칙에 따라 결정
+	// 외적의 Y성분은 삼각형의 방향을 나타낸다. 양수인 경우 시계방향으로 감겨 있고, 음수인 경우 반시계 방향 (잘못된 경우)
 	_float fCross = XMVectorGetY(XMVector3Cross(vLineAB, vLineBC));
 
 	// 음수라면 왼손 좌표게에 맞게 좌표를 설정하지 않은 것이다.

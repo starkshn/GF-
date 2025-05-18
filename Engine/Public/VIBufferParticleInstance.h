@@ -9,14 +9,14 @@ public:
 	typedef struct particle_desc
 	{
 
-		_uint		iNumInstances = 0;
-		_float3		vCenter;
-		_float3		vRange;
-		_float3		vPivot;
-		_float2		vSpeed;
-		_float2		vLifeTime;
-		_float2		vSize;
-		_bool		bIsLoop;
+		_uint		iNumInstances = 0;		// 인스턴싱 개수
+		_float3		vCenter;				// 중심 위치
+		_float3		vRange;					// 범위
+		_float3		vPivot;					// Pivot 방향 벡터
+		_float2		vSpeed;					// 속도
+		_float2		vLifeTime;				// 생명주기
+		_float2		vSize;					// 크기
+		_bool		bIsLoop;				// 루프 여부
 
 	} PARTICLE_DESC;
 

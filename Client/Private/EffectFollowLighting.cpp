@@ -42,18 +42,8 @@ void CEffectFollowLighting::Update(_float fTimeDelta)
     if (IsActive())
     {
         BillBoard();
-
         m_pTransformCom->Scaling(3.5f, 30.f, 2.f);
-
-        /*m_fAccScale += fTimeDelta * m_fSP;
-        m_fAccScale = min(m_fMaxScale, m_fAccScale);
-        m_pTransformCom->Scaling(m_fAccScale, m_fAccScale, m_fAccScale);*/
     }
-    else
-    {
-        // m_fAccScale = 0.f;
-    }
-
 }
 
 void CEffectFollowLighting::LateUpdate(_float fTimeDelta)

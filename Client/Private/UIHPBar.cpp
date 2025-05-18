@@ -176,7 +176,7 @@ void CUIHPBar::SetHPVal(_int iVal)
 {
 	m_fPrevHP = m_fCurHP;				// 현재값을 이전에 저장
 	m_fCurUpdateRatio = m_fPrevHP;		// m_iPrevHP -> m_iHPVal까지 줄어들 예정
-	m_fHPVal = iVal;					// 현재 값을 저장
+	m_fHPVal = (_float)iVal;			// 현재 값을 저장
 	m_fCurHP = m_fHPVal;
 	m_bUpdateHP = true;
 

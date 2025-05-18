@@ -156,40 +156,49 @@ PS_OUT PS_MAIN_BOSS(PS_IN In)
 {
     PS_OUT Out = (PS_OUT) 0;
 
+    // 보스 디퓨즈 색상 샘플링
     vector vMtrlDiffuse = g_DiffuseTexture.Sample(LinearSampler, In.vTexcoord);
+    
+    // 알파값이 0.1이라하면 discard (폐기)
     if (vMtrlDiffuse.a < 0.1f)
         discard;
+    
+    // 그대로 대입한다.
     Out.vDiffuse = vMtrlDiffuse;
     
+    // 디졸브 시작한 경우
     if (g_NoiseStart)
     {
-        // fRatio : 0 -> 1
+        // fRatio : 0 (시작) -> 1 (완료) 사이의 진행 비율
         float fRatio = (g_NoiseCurTime / g_NoiseMaxTime);
-        
-        // 노이즈 텍스쳐 샘플링
+    
+        // 노이즈 텍스처에서 값을 샘플링
         vector vNoise = g_NoiseTexture.Sample(LinearSampler, In.vTexcoord);
-        
-        // UV 왜곡 계산
+    
+        // UV 왜곡 계산: RGB 채널 중 R, G 값을 사용하여 UV 좌표를 왜곡
         float2 UVDistortion = (vNoise.rg - 0.5f) * g_NoiseStrength * fRatio;
         float2 DistortedUV = clamp(In.vTexcoord + UVDistortion, 0.f, 1.f);
-                
+            
         // 왜곡된 UV로 다시 노이즈 샘플링
         vector vDistoredNoise = g_NoiseTexture.Sample(LinearSampler, DistortedUV);
-        
+    
+        // BurnAlpha는 디졸브 마스크 역할을 함
         float BurnAlpha = vDistoredNoise.r;
-        
+    
         // 디졸브 진행중인 픽셀 제거
         if (BurnAlpha < fRatio)
         {
             discard;
         }
+        // 타오르는 경계 영역을 생성 (0.02의 여유를 줘서 Glow 효과를 부여)
         // BurnAlpha가 디졸브할 비율을 말한다.
         // 빨갛게 타오르는 듯한 부분의 영역을 넓히기 위해서 +- 0.02
         else if (BurnAlpha >= fRatio - 0.02f && BurnAlpha <= fRatio + 0.02f)
         {
-            // 빨간 영역: 빛나는 효과 추가
+        // 빨간 영역: 빛나는 효과 추가
+        // GlowFactor를 사용하여 매끄러운 효과를 부여
             float GlowFactor = smoothstep(fRatio - 0.02f, fRatio + 0.02f, BurnAlpha);
-
+        
             Out.vDiffuse.r = 1.0f + GlowFactor * 2.0f; // 빨강 색상 강조
             Out.vDiffuse.g = Out.vDiffuse.r * 0.2f; // 약간의 주황색 톤 추가
             Out.vDiffuse.b = Out.vDiffuse.r * 0.1f;
@@ -199,10 +208,14 @@ PS_OUT PS_MAIN_BOSS(PS_IN In)
 
             return Out;
         }
-        
+    
+        // 경계보다 조금 더 넓은 영역에서 부드러운 Glow 효과 적용
         float GlowFactor = smoothstep(fRatio - 0.05f, fRatio + 0.05f, BurnAlpha);
+    
+        // 기본 색상에 GlowFactor를 추가하여 빛나는 효과 부여
         Out.vDiffuse.rgb += GlowFactor * g_BurnGlowIntensity;
-        
+    
+        // 전체적으로 Dissolve 비율에 따라 점점 사라지도록 함
         Out.vDiffuse.rgb *= lerp(1.f, 0.f, fRatio);
     }
     
@@ -266,6 +279,8 @@ PS_OUT_OUTER PS_MAIN_MONSTER_ONLY(PS_IN In)
 
 
 // 241228 기준으로 아래 PS 사용한다.
+
+
 struct PS_OUT_OUTER_PRE
 {
     float4 vDiffuse : SV_TARGET0;
@@ -288,13 +303,9 @@ PS_OUT_OUTER_PRE PS_MAIN_OUTER_PRE(PS_IN In)
     Out.vNormal = float4(In.vNormal.xyz * 0.5f + 0.5f, 0.f);
     Out.vDepth = float4(In.vProjPos.z / In.vProjPos.w, In.vProjPos.w / 1000.f, 0.f, 0.f);
     Out.vWorld = In.vWorldPos;
-    Out.vOuterPre = float4(0.f, 1.f, 0.f, 1.f);
+    Out.vOuterPre = float4(0.f, 1.f, 0.f, 1.f); // 빨간 외곽선을 그리기 전 초록색으로 칠하기 위한 작업 SV_TARGET4에 초록색으로 칠한다.
     return Out;
 }
-
-// PS_MAIN_OUTER_PRE
-
-
 
 
 technique11 DefaultTechnique
@@ -356,6 +367,7 @@ technique11 DefaultTechnique
         PixelShader = compile ps_5_0 PS_MAIN_MONSTER_ONLY();
     }
 
+// 5
     pass OuterPre
     {
         SetRasterizerState(RSDefault);

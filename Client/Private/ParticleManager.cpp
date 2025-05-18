@@ -370,7 +370,6 @@ void CParticleManager::ActiveParticle(PARTICLE_TYPE eType, HIT_RESULT HitResult)
             if (m_pParticleWallHits[i]->IsActivate())
                 continue;
 
-            // cout << i << " 번째 파티클 발동" << endl;
             m_pParticleWallHits[i]->Activate();
 
             _matrix WorldMatrix = XMMatrixIdentity();
@@ -378,7 +377,6 @@ void CParticleManager::ActiveParticle(PARTICLE_TYPE eType, HIT_RESULT HitResult)
 
             m_pParticleWallHits[i]->UpdateParticleWorldMatrix(WorldMatrix);
             m_pParticleWallHits[i]->SetPivot(m_pGameInst->ConvertHitNormalToPivotPos(HitResult.vNormal) / 1.5f);
-            // m_pParticleWallHits[i]->SetPivot(XMLoadFloat3(&HitResult.vNormal));
             break;
         }
     }

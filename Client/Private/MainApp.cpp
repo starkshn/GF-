@@ -82,9 +82,10 @@ HRESULT CMainApp::Render()
         m_fTimeAcc = 0.f;
     }
 
+    m_pGameInstance->RenderFont(TEXT("Font_147"), m_szFPS, _float2(0.f, 0.f), XMVectorSet(1.f, 1.f, 1.f, 1.f));
+
 #endif
 
-    m_pGameInstance->RenderFont(TEXT("Font_147"), m_szFPS, _float2(0.f, 0.f), XMVectorSet(1.f, 1.f, 1.f, 1.f));
 
     if (FAILED(m_pGameInstance->Render_End()))
         return E_FAIL;

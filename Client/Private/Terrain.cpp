@@ -48,9 +48,9 @@ void CTerrain::LateUpdate(_float fTimeDelta)
 	m_pGameInst->AddRenderObject(CRenderer::RG_NONBLEND, this);
 
 #ifdef _DEBUG
-	//m_pGameInst->AddDebugComponent(m_pNavigationCom);
-	//m_pGameInst->AddDebugComponent(m_pNavigationComS2);
-	//m_pGameInst->AddDebugComponent(m_pNavigationComS3);
+	// m_pGameInst->AddDebugComponent(m_pNavigationCom);
+	// m_pGameInst->AddDebugComponent(m_pNavigationComS2);
+	// m_pGameInst->AddDebugComponent(m_pNavigationComS3);
 #endif
 }
 
@@ -58,9 +58,9 @@ HRESULT CTerrain::Render()
 {
 
 #ifdef _DEBUG
-	/*m_pNavigationCom->Render();
-	m_pNavigationComS2->Render();
-	m_pNavigationComS3->Render();*/
+	// m_pNavigationCom->Render();
+	// m_pNavigationComS2->Render();
+	// m_pNavigationComS3->Render();
 #endif
 
 

@@ -5,6 +5,7 @@
 #include <array>
 #include "tinyxml2.h"
 #include <filesystem>
+#include "Tool_Defines.h"
 
 
 class CConverter final : public Engine::CBase

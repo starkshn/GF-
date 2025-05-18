@@ -70,9 +70,6 @@ void CUITexPerspective::Update(_float fTimeDelta)
 			if (!GetTargetObj()->IsObjInCam(LEVEL_GLOBAL))
 				return;
 
-			// if (!IsInCamera(m_iLevelIndex))
-			// 	return;
-
 			CTransform* pCom = static_cast<CTransform*>(GetTargetObj()->GetComponent(TEXT("Com_Transform")));
 			if (pCom)
 			{
@@ -84,10 +81,6 @@ void CUITexPerspective::Update(_float fTimeDelta)
 				_vector vNewWorldPos = CalWorldPosFromScreenPos(vWorldPosTmp.x, vWorldPosTmp.y);
 				m_pTransformCom->SetTransformState(CTransform::STATE_POS, vNewWorldPos);
 				m_pTransformCom->Scaling(m_fSSizeX, m_fSSizeY, 1.f);
-
-
-
-
 			}
 		}
 	}
@@ -97,7 +90,6 @@ void CUITexPerspective::LateUpdate(_float fTimeDelta)
 {
 	if (IsActiveRender())
 		m_pGameInst->AddRenderObject(CRenderer::RG_UI, this);
-
 }
 
 HRESULT CUITexPerspective::Render()
